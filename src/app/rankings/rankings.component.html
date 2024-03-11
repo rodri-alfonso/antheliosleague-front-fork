@@ -1,0 +1,16 @@
+<app-layout title="Ranking" (formEvent)="goHome()">
+  <p-tabView
+    class="tabs-container"
+    (onChange)="handleChangeTab($event)"
+    [(activeIndex)]="activeIndexChange"
+  >
+    <p-tabPanel>
+      <ng-template class="" pTemplate="header"> EQUIPOS </ng-template>
+      <app-ranking [isTeam]="true"></app-ranking>
+    </p-tabPanel>
+    <p-tabPanel header="INDIVIDUAL">
+      <ng-template pTemplate="header"> INDIVIDUAL </ng-template>
+      <app-ranking [isTeam]="false"></app-ranking>
+    </p-tabPanel>
+  </p-tabView>
+</app-layout>

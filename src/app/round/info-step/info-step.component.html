@@ -1,0 +1,78 @@
+<section class="container">
+  <app-round-card
+    label="El caso"
+    [buttonLabel]="'Siguiente'"
+    (onClickButton)="handleClick()"
+  >
+    <div class="content">
+      <p>
+        {{ round.roundCase.description }}
+      </p>
+
+      <div class="buttons">
+        @if(round.roundCase.pictures.length > 0){ @for (picture of
+        round.roundCase.pictures; track picture.id; let idx = $index) {
+        <app-button
+          [text]="'Ver imagen ' + (idx + 1)"
+          [classBtn]="'btn-secondary'"
+          (onClick)="showDialog(picture.id)"
+        />
+        } }
+      </div>
+    </div>
+  </app-round-card>
+</section>
+
+<p-dialog
+  [(visible)]="visible"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '320px', height: '373px' }"
+  [draggable]="false"
+  [resizable]="false"
+  [showHeader]="false"
+  [class]="maximized ? 'image-modal modal-maximized' : 'image-modal'"
+  [maximizable]="true"
+  [showHeader]="true"
+  [closable]="false"
+  (onMaximize)="handleMaximize()"
+>
+  <ng-template pTemplate="header"> </ng-template>
+  <img
+    [src]="getSrcImageById()"
+    alt=""
+    [class]="maximized ? 'banner maximized' : 'banner'"
+  />
+  <button class="open-btn">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 36 36"
+      fill="none"
+    >
+      <path
+        d="M30 30V31.5H31.5V30H30ZM23.5607 21.4393C22.9749 20.8536 22.0251 20.8536 21.4393 21.4393C20.8536 22.0251 20.8536 22.9749 21.4393 23.5607L23.5607 21.4393ZM28.5 21V30H31.5V21H28.5ZM30 28.5H21V31.5H30V28.5ZM31.0607 28.9393L23.5607 21.4393L21.4393 23.5607L28.9393 31.0607L31.0607 28.9393Z"
+        fill="#FFEC2D"
+      />
+      <path
+        d="M6 30H4.5V31.5H6V30ZM14.5607 23.5607C15.1464 22.9749 15.1464 22.0251 14.5607 21.4393C13.9749 20.8536 13.0251 20.8536 12.4393 21.4393L14.5607 23.5607ZM4.5 21V30H7.5V21H4.5ZM6 31.5H15V28.5H6V31.5ZM7.06066 31.0607L14.5607 23.5607L12.4393 21.4393L4.93934 28.9393L7.06066 31.0607Z"
+        fill="#FFEC2D"
+      />
+      <path
+        d="M30 6H31.5V4.5H30V6ZM21.4393 12.4393C20.8536 13.0251 20.8536 13.9749 21.4393 14.5607C22.0251 15.1464 22.9749 15.1464 23.5607 14.5607L21.4393 12.4393ZM31.5 15V6H28.5V15H31.5ZM30 4.5H21V7.5H30V4.5ZM28.9393 4.93934L21.4393 12.4393L23.5607 14.5607L31.0607 7.06066L28.9393 4.93934Z"
+        fill="#FFEC2D"
+      />
+      <path
+        d="M6 6V4.5H4.5V6H6ZM12.4393 14.5607C13.0251 15.1464 13.9749 15.1464 14.5607 14.5607C15.1464 13.9749 15.1464 13.0251 14.5607 12.4393L12.4393 14.5607ZM7.5 15V6H4.5V15H7.5ZM6 7.5H15V4.5H6V7.5ZM4.93934 7.06066L12.4393 14.5607L14.5607 12.4393L7.06066 4.93934L4.93934 7.06066Z"
+        fill="#FFEC2D"
+      />
+    </svg>
+  </button>
+
+  <button
+    [class]="maximized ? 'close-btn opened' : 'close-btn'"
+    (click)="hideDialog()"
+  >
+    <i class="pi pi-times" style="color: #cea023; font-size: 1rem"></i>
+  </button>
+</p-dialog>

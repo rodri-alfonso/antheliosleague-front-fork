@@ -1,0 +1,99 @@
+<app-layout title="Nueva ronda" (formEvent)="handleClickBackEvent()">
+  <br />
+
+  @switch (step) { @case (1) {
+  <round-initial-step
+    (formEvent)="handleFormEvent($event)"
+    [currentRoundNumber]="currentRound.round.number"
+  />
+  } @case (2) {
+  <round-info-step
+    (formEvent)="handleFormEvent($event)"
+    [round]="currentRound.round"
+  />
+  } @case (3) {
+  <round-question-step
+    (formEvent)="handleFormEvent($event)"
+    [answers]="currentRound.round.roundCase.question.options"
+  />
+  } @case (4) {
+  <round-final-step (formEvent)="handleFormEvent($event)" />
+  } } @if(isComodinVisible){
+  <div class="comodin-container">
+    <div class="comodin-btns">
+      <div class="comodin-logo" (click)="toggleModal()">
+        <img src="assets/svg/comodin.svg" alt="" />
+      </div>
+      <app-button
+        [style]="'margin-left: 50px;'"
+        text="Comodines"
+        [classBtn]="'btn-app btn-secondary'"
+        (click)="toggleModal()"
+      ></app-button>
+    </div>
+  </div>
+  }
+</app-layout>
+
+<p-dialog
+  [(visible)]="isOpenModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  class="comodin-modal"
+  [styleClass]="'comodin-modal'"
+>
+  <ng-template pTemplate="headless">
+    <div class="comodin-modal__header">
+      <div class="comodin-logo">
+        <img src="assets/svg/comodin.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="comodin-modal__content">
+      <div class="comodin-modal__body">
+        <h3>
+          {{
+            comodinType === "delegado" ? "COMODÍN DEL DELEGADO" : "COMODINES"
+          }}
+        </h3>
+        @if(hasComodin){
+        <p>
+          {{
+            comodinType === "delegado"
+              ? "Escribe aquí para buscar a tu delegado:"
+              : "Este es el comodín disponible para esta pregunta:"
+          }}
+        </p>
+        } @else {
+        <p>No hay comodines disponibles para esta pregunta:</p>
+        }
+      </div>
+      <div class="comodin-modal__footer">
+        @if(hasComodin) { @if(comodinType === "delegado") {
+        <app-delegate-autocomplete (formEvent)="onSelectDelegate($event)" />
+
+        <app-button
+          text="Confirmar"
+          [classBtn]="'btn-primary'"
+          [loading]="loadingComodin"
+          [disable]="!selectedDelegate"
+          (onClick)="handleDelegateComodin()"
+        ></app-button>
+        } @else {
+        <app-button
+          text="50/50"
+          (click)="handleComodin()"
+          [classBtn]="'btn-primary'"
+          [loading]="loadingComodin"
+        ></app-button>
+        } }
+        <app-button
+          text="Volver"
+          (click)="toggleModal()"
+          [classBtn]="'btn-secondary'"
+        ></app-button>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

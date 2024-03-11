@@ -1,0 +1,50 @@
+@import "../../../../partials/colors";
+
+.container {
+  display: grid;
+  gap: 16px;
+  place-items: center;
+
+  .label {
+    text-align: center;
+    font-family: Open;
+    font-weight: 800;
+    font-size: 14px;
+    color: #1e529d;
+  }
+
+  .content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .date-container {
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    p {
+      font-family: Open;
+      font-weight: 800;
+      font-size: 12px;
+      color: #133266;
+      text-transform: uppercase;
+    }
+  }
+
+  .date-content {
+    display: flex;
+    gap: 4px;
+
+    span {
+      display: grid;
+      place-items: center;
+      background: linear-gradient(0deg, #1e529d 0%, #091025 100%);
+      font-family: var(--acent-font);
+      color: white;
+      font-size: 23px;
+      height: 39px;
+      width: 28px;
+    }
+  }
+}

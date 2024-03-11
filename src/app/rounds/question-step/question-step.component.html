@@ -1,0 +1,140 @@
+<section class="container">
+  <app-round-card
+    [label]="showInfo ? 'Explicación' : 'Pregunta'"
+    [buttonLabel]="hasQueryParam ? 'Siguiente' : 'Finalizar'"
+    (onClickButton)="hasQueryParam ? handleClick() : handleFinish()"
+    [classCard]="'container-cards'"
+  >
+    @if(showInfo){
+    <explanation-step [hasQueryParam]="hasQueryParam" />
+    } @else{
+    <div class="content-question-card">
+      <b> ¿Cuál es tu diagnóstico? </b>
+
+      <form class="aswers">
+        @for (answer of answers; track $index) {
+        <div class="answers__item {{ getQuestionStyleById(answer?.id || 0) }}">
+          @if(selectedAnswerId === answer.id){
+          <div class="checked-icon-container">
+            @if(hasCorrectAnswer){
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29"
+              height="29"
+              viewBox="0 0 29 29"
+              fill="none"
+            >
+              <circle
+                cx="14.6658"
+                cy="14.8604"
+                r="10.5"
+                stroke="#133266"
+                stroke-width="2"
+              />
+              <path
+                d="M9.99916 14.8604L13.4992 18.3604L19.3325 11.3604"
+                stroke="#133266"
+                stroke-width="2"
+              />
+            </svg>
+            }@else{ @if(hasQueryParam){
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29"
+              height="28"
+              viewBox="0 0 29 28"
+              fill="none"
+            >
+              <path
+                d="M14.5393 24.5C13.1604 24.5 11.795 24.2284 10.5211 23.7007C9.24721 23.1731 8.0897 22.3996 7.11468 21.4246C6.13967 20.4496 5.36625 19.2921 4.83857 18.0182C4.3109 16.7443 4.03931 15.3789 4.03931 14C4.03931 12.6211 4.3109 11.2557 4.83857 9.98182C5.36625 8.7079 6.13967 7.55039 7.11469 6.57538C8.0897 5.60036 9.24721 4.82694 10.5211 4.29926C11.7951 3.77159 13.1604 3.5 14.5393 3.5C15.9182 3.5 17.2836 3.77159 18.5575 4.29927C19.8314 4.82694 20.9889 5.60037 21.9639 6.57538C22.9389 7.5504 23.7124 8.70791 24.24 9.98183C24.7677 11.2557 25.0393 12.6211 25.0393 14C25.0393 15.3789 24.7677 16.7443 24.24 18.0182C23.7124 19.2921 22.9389 20.4496 21.9639 21.4246C20.9889 22.3996 19.8314 23.1731 18.5575 23.7007C17.2836 24.2284 15.9182 24.5 14.5393 24.5L14.5393 24.5Z"
+                stroke="#133266"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M11.0393 10.5L18.0393 17.5"
+                stroke="#133266"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M18.0393 10.5L11.0393 17.5"
+                stroke="#133266"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            }@else{
+            <div class="radio-content fixed-size"></div>
+            } }
+          </div>
+
+          } @else{ @if( correctAnswerId === answer.id){
+          <div class="checked-icon-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29"
+              height="29"
+              viewBox="0 0 29 29"
+              fill="none"
+            >
+              <circle
+                cx="14.6658"
+                cy="14.8604"
+                r="10.5"
+                stroke="#133266"
+                stroke-width="2"
+              />
+              <path
+                d="M9.99916 14.8604L13.4992 18.3604L19.3325 11.3604"
+                stroke="#133266"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+          }@else{
+          <div class="radio-content"></div>
+          } }
+          <label [for]="answer.id" [style]="{ cursor: 'pointer' }"
+            ><b>{{ getLetterKeyById($index) }}</b> {{ answer.label }}</label
+          >
+        </div>
+        }
+      </form>
+    </div>
+
+    <section class="answer-button-container">
+      <h2>
+        {{
+          hasCorrectAnswer || !hasQueryParam
+            ? "Respuesta correcta:"
+            : "Respuesta incorrecta:"
+        }}
+      </h2>
+      <p>
+        Se trata de un dermatofibroma hemosidérotico caracterizado por presentar
+        un retículo pigmentado “fino” en periferia y en cuya zona central
+        destaca la presencia de áreas de diferentes colores yuxtapuestos (patrón
+        en arco iris).
+      </p>
+      <app-button
+        text="más info"
+        classBtn="btn-secondary full-btn"
+        (onClick)="toggleInfo()"
+      />
+      @if(hasQueryParam){
+      <div class="score-container">
+        <h3>{{ hasCorrectAnswer ? "¡Enhorabuena!" : "Vaya..." }}</h3>
+        <p>Has ganado:</p>
+        <div class="score-content">
+          <span class="score">{{
+            hasCorrectAnswer ? round?.roundCase?.question?.points : 0
+          }}</span>
+          <img src="assets/svg/sun.svg" alt="" />
+        </div>
+      </div>
+      }
+    </section>
+    }
+  </app-round-card>
+</section>

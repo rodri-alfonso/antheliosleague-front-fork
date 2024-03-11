@@ -1,0 +1,100 @@
+<auth-layout>
+  <main class="main-success">
+    <div class="info-modal">
+      <p style="color: red">{{ message }}</p>
+      <p class="greeting-text">
+        Enhorabuena {{ form.nickname || "" }},<br />
+        ¡ya estás registrado en Anthelios League!<br />
+        <span
+          >El día 1 de abril dará comienzo<br />
+          la competición.</span
+        >
+      </p>
+
+      <div class="team-container">
+        @if(form.team.name){
+        <p class="team">TU EQUIPO:</p>
+        <p class="team-name">{{ form.team.name }}</p>
+        }
+      </div>
+
+      <button (click)="share()">INVITAR A JUGADORES</button>
+
+      <p class="support">
+        Si quieres cambiar de equipo, o tienes alguna duda, escribe a
+        <a target="_blank" href="mailto:soporte@antheliosleague.com"
+          >soporte&#64;antheliosleague.com</a
+        >
+      </p>
+
+      <div class="line"></div>
+
+      <p class="access-text">
+        Recuerda <span>crear un acceso directo en tu móvil</span> siguiendo
+        estos sencillos pasos en tu navegador:
+      </p>
+
+      <div class="step-one">
+        <p class="steps-title">PASO 1:</p>
+        <div class="container-opsyst">
+          <div class="op-syst">
+            <p>
+              En <span>iPhone</span>, pulsa el botón “compartir” del menú
+              inferior
+            </p>
+            <img src="../../assets/icons/icon-up.svg" alt="" />
+          </div>
+          <div class="op-syst">
+            <p>
+              En <span>Android</span>, pulsa los 3 puntos en la esquina superior
+              derecha
+            </p>
+            <img src="../../assets/icons/icon-dots.svg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="step-two">
+        <p class="steps-title">PASO 2:</p>
+        <p class="choice-text">
+          Elige "añadir a pantalla de inicio" <br />
+          o "Instalar aplicación"
+        </p>
+        <div class="icons-links">
+          <img src="../../assets/icons/icon-more.svg" alt="" />
+          <img src="../../assets/icons/icon-phone.svg" alt="" />
+        </div>
+      </div>
+    </div>
+  </main>
+</auth-layout>
+
+<p-sidebar
+  [(visible)]="isSidebarOpen"
+  position="bottom"
+  class="app-share-sidebar"
+>
+  <ng-template pTemplate="header">
+    <span>Compartir</span>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <div class="button-content">
+      <button class="icon-content" (click)="handleCopy()">
+        <i class="pi pi-copy" style="font-size: 1.5rem"></i>
+        <span>Copiar</span>
+      </button>
+    </div>
+
+    <div class="button-content">
+      <a
+        class="icon-content"
+        href="whatsapp://send?text={{ getWhatsappText() }}"
+        data-action="share/whatsapp/share"
+        (click)="hanldeCloseSidebar()"
+      >
+        <i class="pi pi-whatsapp" style="font-size: 1.5rem"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </ng-template>
+</p-sidebar>

@@ -1,0 +1,127 @@
+<auth-layout>
+  <div class="formBox">
+    <h1 class="title-main">REGISTRO</h1>
+    <form class="form-container" [formGroup]="baseForm" (submit)="onSubmit()" autocomplete="off">
+      <div class="input-container">
+        <app-input
+          placeholder="Nombre y apellidos"
+          formControlName="fullname"
+          [required]="true"
+          [errorMessage]="
+            baseForm.get('fullname')?.errors?.['minlength']
+              ? 'El campo necesita al menos 3 dígitos'
+              : ''
+          "
+        />
+        <app-input
+          placeholder="Nickname (visible al resto de jugadores)"
+          formControlName="nickname"
+          [required]="true"
+          [errorMessage]="getNicknameErrorMessage()"
+        />
+        <app-input
+          placeholder="e-mail"
+          formControlName="email"
+          [required]="true"
+          [errorMessage]="getEmailErrorMessage()"
+        />
+        <app-input
+          placeholder="Contraseña"
+          [eyeIcon]="true"
+          type="password"
+          [required]="true"
+          formControlName="password"
+          [errorMessage]="
+            baseForm.get('password')?.hasError('pattern')
+              ? 'La contraseña debe contener al menos 5 caracteres'
+              : ''
+          "
+        />
+        <app-autocomplete
+          placeholder="Centro *"
+          [options]="centers"
+          (formEvent)="handleSelectCenter($event)"
+        />
+        <app-select
+          placeholder="Cargo *"
+          [options]="positions"
+          (onChangeOption)="handleSelectPosition($event)"
+        />
+        <app-avatar-select
+          placeholder="Avatar *"
+          optionsType="avatars"
+          [required]="true"
+          formControlName="avatar"
+        />
+      </div>
+
+      <div class="button-container">
+        <div class="switch-container">
+          <app-switch (click)="handleSwitch('sendNews')">
+            <p>Acepto recibir comunicaciones referentes a la competición.</p>
+          </app-switch>
+          <div class="switch-conteiner">
+            <app-switch (click)="handleSwitch('confirmConditions')">
+            </app-switch>
+            <p>
+              Acepto los
+              <a
+                href="https://www.antheliosleague.com/terminosycondiciones.pdf"
+                target="_blank"
+                >términos y condiciones</a
+              >
+              de uso. *
+            </p>
+          </div>
+        </div>
+
+        <div class="buttons-content">
+          <app-button
+            [text]="isLoading ? 'Validando...' : 'Continuar'"
+            [classBtn]="'btn-primary'"
+            type="submit"
+            (onClick)="onSubmit()"
+            [loading]="isLoading"
+            [disable]="!baseForm.valid"
+          />
+
+          <h2 class="buttons-label">¿YA ESTÁS REGISTRADO?</h2>
+
+          <a routerLink="/login">
+            <app-button [text]="'Acceder'" [classBtn]="'btn-primary'" />
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</auth-layout>
+
+<p-dialog
+  [(visible)]="isOpenModal"
+  [modal]="true"
+  [style]="{ width: '85%' }"
+  [draggable]="false"
+  [resizable]="false"
+  header="Términos y condiciones"
+  class="conditions-modal"
+>
+  <div class="conditions-text">
+    Lorem ipsum dolor sit amet consectetur adipiscing elit nostra, laoreet fames
+    faucibus tincidunt luctus ut quam leo, nisl primis etiam id elementum mattis
+    molestie. Etiam arcu purus platea pretium morbi tincidunt cras metus turpis,
+    sed auctor mus dictum tempor vestibulum non ut, lobortis et pellentesque
+    praesent congue sem laoreet imperdiet. Lobortis penatibus sagittis sociis
+    arcu vulputate litora lacinia morbi, magna cubilia senectus neque nullam
+    euismod eget vitae, lectus urna tristique diam cum tellus vehicula. Tempor
+    facilisis gravida dis consequat accumsan quis fusce volutpat, magna
+    fringilla etiam eget torquent maecenas fermentum vitae purus, commodo magnis
+    augue sollicitudin est tempus porta.
+    <br />
+
+    Placerat mauris tempus augue quis lacinia per viverra est sollicitudin,
+    gravida nibh bibendum dictum odio cum inceptos curae, ad justo magna proin
+    blandit egestas iaculis fermentum. Dignissim nostra pulvinar blandit posuere
+    netus nisl, pellentesque condimentum a natoque nam. Ornare penatibus etiam
+    non in quam, ut magna rhoncus torquent, leo dui pharetra magnis. <br />
+  </div>
+</p-dialog>

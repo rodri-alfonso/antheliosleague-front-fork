@@ -1,0 +1,95 @@
+@import "colors";
+
+.switch-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .p-element {
+      .p-inputswitch {
+        width: 3.3rem;
+        height: 1.6rem;
+        .p-inputswitch-slider {
+          transition: none;
+          background: $bgSwitch-gradient-primary;
+        }
+        ::before {
+          width: 1.15rem;
+          height: 1.15rem;
+          left: 0.1.5rem;
+          margin-top: -0.59rem;
+          background: $btnSwitch-gradient-primary;
+        }
+      }
+      .p-inputswitch-checked {
+        width: 3.3rem;
+        height: 1.6rem;
+        .p-inputswitch-slider {
+          background: $bgSwitch-gradient-secondary;
+        }
+        ::before {
+          transform: translateX(1.65rem);
+          background: $btnSwitch-gradient-secondary;
+        }
+      }
+      .p-focus {
+        .p-inputswitch-slider {
+        }
+      }
+    }
+    p {
+      color: #fff;
+      font-size: 9px;
+      font-family: "Montserrat";
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+      a {
+        color: #fff;
+        font-size: 9px;
+        font-family: "Montserrat";
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border-bottom: 1px solid;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/**********  Mwdia Query 450 ***********/
+
+@media (min-width: 650px) {
+  .switch-container {
+    width: 100%;
+    /* padding: 35px; */
+  }
+}
+
+.switch-conteiner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  p {
+    color: #fff;
+    font-size: 9px;
+    font-family: "Montserrat";
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+    a {
+      color: #fff;
+      font-size: 9px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-bottom: 1px solid;
+      cursor: pointer;
+    }
+  }
+}

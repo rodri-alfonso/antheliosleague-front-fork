@@ -1,0 +1,80 @@
+<main>
+  <nav [class]="isHomePath ? 'navigation-bar home-bar' : 'navigation-bar'">
+    @if(isHomePath){
+    <div class="empty-box"></div>
+    } @if(!isHomePath){
+    <button (click)="handleClickBack()">
+      <img src="../../../assets/svg/icon-back.svg" alt="" />
+    </button>
+
+    <span class="navigation-title title-main">{{ title }}</span>
+    }
+
+    <button (click)="toggleBurguerMenu()">
+      <img src="../../../assets/svg/icon-burger.svg" alt="Ícono de menú" />
+    </button>
+  </nav>
+  <div
+    [class]="
+      isBlueLayout
+        ? 'bg-main gradient-background'
+        : isDarkBlue
+        ? 'bg-main dark-background'
+        : isRoundPath
+        ? 'bg-main round-background'
+        : 'bg-main home-background'
+    "
+  >
+    @if(isBlueLayout) {
+    <img
+      class="dots-mobile"
+      src="../../../assets/svg/bg-dots-mobile.svg"
+      alt="Imagen de puntos"
+    />
+    <img
+      class="dots-desktop-left"
+      src="../../../assets/svg/bg-dots-desk-left.svg"
+      alt="Imagen de puntos"
+    />
+    <img
+      class="dots-desktop-right"
+      src="../../../assets/svg/bg-dots-desk-right.svg"
+      alt="Imagen de puntos"
+    />
+    }
+    <div
+      [class]="
+        isBurguerMenuVisible
+          ? 'header-burgerMenu burguer-opened'
+          : 'header-burgerMenu'
+      "
+    ></div>
+
+    @if(!isMobile || isHomePath){
+    <img
+      class="img-corner-top"
+      src="../../../assets/svg/corner-top.svg"
+      alt="Imagen de corner superior"
+    />
+    <img
+      class="logo-athelios"
+      src="../../../assets/logo-anthelios.svg"
+      alt="logo de Anthelios league"
+    />
+
+    <img
+      class="img-corner-bottom"
+      src="../../../assets/svg/corner-bottom.svg"
+      alt="Imagen de corner inferior"
+    />
+    }
+  </div>
+
+  <div class="content">
+    @if(isBurguerMenuVisible){
+    <app-burguer-menu (formEvent)="onBurguerMenuItemClick()" />
+    }@else{
+    <ng-content></ng-content>
+    }
+  </div>
+</main>

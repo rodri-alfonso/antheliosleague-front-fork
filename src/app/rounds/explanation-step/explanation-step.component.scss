@@ -1,0 +1,25 @@
+@import "../../../partials/colors";
+
+app-round-card {
+  display: flex;
+  justify-content: center;
+
+  .content {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    .subtitle-yellow {
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: $secondary-color;
+      text-transform: none;
+    }
+    p {
+      font-size: 13px;
+    }
+    .bibligraphy-text {
+      font-style: italic;
+    }
+  }
+}

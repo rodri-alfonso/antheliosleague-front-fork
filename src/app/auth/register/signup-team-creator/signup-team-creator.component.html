@@ -1,0 +1,32 @@
+<auth-layout>
+  <div class="formBox">
+    <h1 class="title-main">Crea tu equipo</h1>
+
+    <div class="container">
+      <form [formGroup]="teamForm" class="content-form">
+        <div class="form-item">
+          <span class="center-name">{{ centerName }}</span>
+          <i class="pi pi-lock"></i>
+        </div>
+        <app-input
+          placeholder="Nombre del equipo"
+          formControlName="teamName"
+          [errorMessage]="teamErrorMessage"
+        />
+        <app-avatar-select
+          placeholder="Escudo"
+          optionsType="logos"
+          (formEvent)="handleFormEvent($event)"
+        />
+      </form>
+      <div class="buttons-safari-container">
+        <app-button
+          [text]="'Finalizar'"
+          [classBtn]="'btn-primary'"
+          (click)="continueInvalid()"
+          [disable]="!selectedLogoId || !teamForm.valid"
+        />
+      </div>
+    </div>
+  </div>
+</auth-layout>

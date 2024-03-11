@@ -1,0 +1,86 @@
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+
+  .logo-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    place-items: end;
+    justify-items: stretch;
+
+    img {
+      position: absolute;
+    }
+  }
+
+  & .answered {
+    padding-bottom: 65px;
+  }
+  & .normal {
+    padding-bottom: 40px;
+  }
+
+  .button-content {
+    padding: 20px 0;
+    display: grid;
+    margin: 0 auto;
+    width: 171px;
+  }
+  .link-content {
+    display: grid;
+    margin: 0 auto;
+    width: 171px;
+    z-index: 300px;
+  }
+
+  .cards-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+.center-modal-container {
+  & .btn-secondary {
+    padding: 20px;
+  }
+
+  & .float-btn {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 32px;
+    border: 0;
+    z-index: 10;
+    background: unset;
+    cursor: pointer;
+  }
+  .container {
+    position: relative;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    overflow: hidden;
+    h2 {
+      font-family: "UnicaOne";
+      color: #133266;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      line-height: 30px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    p {
+      font-weight: bold;
+      line-height: 15px;
+    }
+  }
+}

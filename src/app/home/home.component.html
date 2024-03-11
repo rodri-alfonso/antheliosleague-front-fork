@@ -1,0 +1,105 @@
+<app-layout>
+  @if(loading){
+  <div style="padding-top: 100px">
+    <app-spinner />
+  </div>
+  } @else{
+  <div class="container">
+    <div class="cards-container">
+      @if(userLoading){
+      <app-spinner />
+      }@else{
+      <score-card
+        [imageUrl]="'../../assets/logos/' + scoreInfo.team.avatar + '.png'"
+        [score]="scoreInfo.team.points"
+        [labelPrimary]="scoreInfo.team.name"
+        [labelSecondary]="scoreInfo.team.center"
+        name="name"
+      />
+      <score-card
+        [imageUrl]="'../../assets/avatars/' + scoreInfo.user.avatar + '.png'"
+        [score]="scoreInfo.user.points"
+        [labelPrimary]="scoreInfo.user.name"
+        labelSecondary=""
+        name="name"
+      />
+      }
+    </div>
+    <div
+      [class]="
+        wasAnsweredRound ? 'logo-container answered' : 'logo-container normal'
+      "
+    >
+      <img
+        [src]="
+          'assets/' +
+          (wasAnsweredRound
+            ? 'logo-comingSoon-home.svg'
+            : 'logo-newRound-home.svg')
+        "
+        alt=""
+      />
+
+      <a class="link-content">
+        <app-button
+          [text]="wasAnsweredRound ? 'resultados ronda previa' : 'Jugar'"
+          [classBtn]="'btn-secondary'"
+          [disable]="wasAnsweredRound && currentRoundNumber === 1"
+          (onClick)="handleCickPlay()"
+        />
+      </a>
+    </div>
+    @if(!hideCounter){
+    <app-countdown
+      [date]="endRoundDate"
+      [label]="
+        wasAnsweredRound
+          ? 'Próxima ronda en:'
+          : 'Tiempo restante para responder:'
+      "
+    />
+    }
+    <div class="button-content">
+      <a>
+        <app-button
+          text="Rankings"
+          [classBtn]="'btn-secondary button-ranking'"
+          [disable]="currentRoundNumber === 1"
+          (onClick)="handleClickRanking()"
+        />
+      </a>
+    </div>
+  </div>
+  }
+</app-layout>
+
+<p-dialog
+  [(visible)]="visibleAnsweredModal"
+  [modal]="true"
+  [style]="{ width: '85%' }"
+  [draggable]="false"
+  [resizable]="false"
+  [showHeader]="false"
+  class="center-modal-container dialog-empty-round"
+>
+  <button class="float-btn" (click)="handleCloseDialog()">
+    <img src="../../assets/icons/icon-close-round.svg" alt="" />
+  </button>
+  <div class="container">
+    <h2>
+      ¡DESCUBRE LOS RESULTADOS <br />
+      DE LA RONDA {{ lastClosedRoundNumber }}!
+    </h2>
+    <p>
+      Ya disponibles las respuestas correctas <br />
+      y sus explicaciones. ¡No te los pierdas!
+    </p>
+
+    <app-button
+      text="Ver Resultados"
+      [classBtn]="'btn-secondary btn-dialog btn-results'"
+      (onClick)="handleCickDialog()"
+      [loading]="loading"
+    />
+  </div>
+</p-dialog>

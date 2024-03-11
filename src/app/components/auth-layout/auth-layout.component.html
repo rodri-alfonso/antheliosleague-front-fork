@@ -1,0 +1,45 @@
+<main>
+  <div class="bg-main">
+    <img
+      class="dots-mobile"
+      src="../../../assets/svg/bg-dots-mobile.svg"
+      alt="Imagen de puntos"
+    />
+    <img
+      class="dots-desktop-left"
+      src="../../../assets/svg/bg-dots-desk-left.svg"
+      alt="Imagen de puntos"
+    />
+    <img
+      class="dots-desktop-right"
+      src="../../../assets/svg/bg-dots-desk-right.svg"
+      alt="Imagen de puntos"
+    />
+    <img
+      class="img-corner-top"
+      src="../../../assets/svg/corner-top.svg"
+      alt="Imagen de corner superior"
+    />
+    @if(!isSplash){
+    <img
+      class="logo-athelios"
+      src="../../../assets/logo-anthelios.svg"
+      alt="logo de Anthelios league"
+    />
+    } @if(!isSplash){
+    <img
+      class="logo-laRoche"
+      src="../../../assets/logo-laRoche.svg"
+      alt="logo de Anthelios league"
+    />
+    }
+    <img
+      class="img-corner-bottom"
+      src="../../../assets/svg/corner-bottom.svg"
+      alt="Imagen de corner inferior"
+    />
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</main>

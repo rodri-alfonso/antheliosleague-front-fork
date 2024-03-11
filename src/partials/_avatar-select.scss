@@ -1,0 +1,66 @@
+@import "colors";
+
+.customselect {
+  & .p-dropdown-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+  }
+  .p-dropdown-item {
+    padding: 0.3rem;
+    margin: 0.3rem;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #2658af;
+    font-family: "Montserrat";
+    font-weight: 600;
+    border-radius: 50%;
+    border: none;
+    &:hover {
+      margin: 0.6rem;
+      border-radius: 50%;
+      background: $secondary-color-dark;
+    }
+    &:active {
+      margin: 0.6rem;
+      border-radius: 50%;
+      background: $secondary-color-dark;
+    }
+  }
+
+  .p-focus {
+    margin: 0.6rem;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    &:hover {
+      padding: 0.3rem;
+      border-radius: 50%;
+      background: $secondary-color-dark;
+    }
+    &:active {
+      padding: 0.3rem;
+      border-radius: 50%;
+      background: $secondary-color-dark;
+    }
+  }
+}
+.p-inputwrapper {
+  span {
+    color: #133266;
+  }
+}
+
+.p-dropdown-trigger {
+  height: 100%;
+  width: 47.5px;
+}
+
+.p-dropdown-label {
+  color: $primary-color-light !important;
+}
+
+/**********  Mwdia Query 450 ***********/
+
+@media (min-width: 650px) and (max-height: 700px) {
+}

@@ -1,0 +1,64 @@
+<div class="team-card">
+  <div class="team-card__container">
+    <img
+      src="../../../../assets/logos/{{ team.avatar }}.png"
+      alt=""
+      style="width: 1.75rem"
+    />
+    <div class="team-card__container__content">
+      <div>
+        <h6>{{ team.name }}</h6>
+        <p>{{ centerName }}</p>
+      </div>
+    </div>
+    <div class="team-card__container__buttons">
+      <app-button
+        [text]="'Unirse'"
+        [classBtn]="'btn-primary btn-small'"
+        (onClick)="openModal()"
+        [disable]="!isAvailableToJoin()"
+      />
+      <app-button
+        [text]="'Ver miembros'"
+        [classBtn]="'btn-secondary-icon btn-small'"
+        (click)="handleShowMembers()"
+      />
+    </div>
+  </div>
+  @if (showMembers) {
+  <ul class="team-card__content">
+    @for (member of team.users; track member) {
+    <li>{{ member }}</li>
+    }
+  </ul>
+  }
+</div>
+<p-dialog
+  [(visible)]="isOpenModal"
+  [modal]="true"
+  [style]="{ width: '85%' }"
+  [draggable]="false"
+  [resizable]="false"
+  [showHeader]="false"
+  class="center-modal-container"
+>
+  <div class="container">
+    <h2>
+      <span>"{{ team.name }}"</span>
+    </h2>
+    <p>¿Estás seguro que deseas unirte a este equipo?</p>
+
+    <div class="buttons-container">
+      <app-button
+        text="Unirse"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (click)="handleClick()"
+      />
+      <app-button
+        text="Cancelar"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (onClick)="closeModal()"
+      />
+    </div>
+  </div>
+</p-dialog>

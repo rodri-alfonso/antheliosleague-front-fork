@@ -1,0 +1,59 @@
+.formBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 75px 10px 0 10px;
+  gap: 1.5rem;
+  margin-bottom: 50px;
+  .team-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0.94rem;
+    font-size: 12px;
+    line-height: 0.9375rem;
+    border-radius: 1rem;
+    background: linear-gradient(#091025, #133266);
+    .formHeader {
+      text-align: center;
+      gap: 6px;
+      p {
+        span {
+          font-family: 'Barlow-medium';
+        }
+      }
+    }
+    .teams-container {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      gap: 16px;
+      margin: 0.7rem 0;
+    }
+    .button-container {
+      width: 100%;
+      padding: 14px 0 20px 0;
+      display: grid;
+      place-items: center;
+      gap: 26px;
+      box-shadow: none;
+      .buttons-content {
+        width: 80%;
+      }
+    }
+  }
+}
+app-button {
+  width: 100%;
+}
+app-team-card {
+  width: 100%;
+}
+
+
+
+

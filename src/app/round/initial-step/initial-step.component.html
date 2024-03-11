@@ -1,0 +1,18 @@
+<section class="container">
+  <div class="logo-container">
+    <img class="banner" src="../../../assets/images/round-banner.png" alt="" />
+    <p [class]="currentRoundNumber === 1 ? 'round-number one' : 'round-number'">
+      {{ currentRoundNumber }}
+    </p>
+  </div>
+
+  <div class="content">
+    <p>¿Preparado?</p>
+    <app-button
+      text="¡A Jugar!"
+      [classBtn]="'btn-primary'"
+      (click)="handleClick()"
+    />
+  </div>
+</section>
+|

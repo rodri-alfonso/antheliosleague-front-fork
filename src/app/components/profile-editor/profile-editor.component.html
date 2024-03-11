@@ -1,0 +1,150 @@
+<form
+  class="container"
+  [formGroup]="baseForm"
+  (submit)="handleSubmit()"
+  autocomplete="off"
+>
+  <!--**** Main avatar ****-->
+  <div class="main-avatar">
+    <img
+      class="avatar"
+      src="../../../assets/avatars/2.png"
+      alt="Imagen de avatar "
+    />
+    <img
+      class="icon"
+      src="../../../assets/svg/Icon-camera------ver reemplazo----.svg"
+      alt="Ícono de cambio "
+    />
+  </div>
+
+  <!--**** Inputs ****-->
+  <div class="inputs-container">
+    <!-- Name-Input -->
+    <div class="input-profile">
+      <p class="label">Nombre y Apellidos</p>
+      <app-input
+        placeholder="Nombre y apellidos"
+        formControlName="fullname"
+        [required]="true"
+        [initialValue]="user.fullname"
+      />
+    </div>
+
+    <!-- Email-Input -->
+    <div class="input-profile">
+      <p class="label">E-mail</p>
+      <div class="content-input">
+        <p>{{ user.email }}</p>
+        <img src="../../../assets/svg/icon-padlock.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- Nickname-Input -->
+    <div class="input-profile">
+      <p class="label">Nickname</p>
+      <app-input
+        placeholder="Nickname"
+        formControlName="nickname"
+        [required]="true"
+        [initialValue]="user.nickname"
+      />
+    </div>
+
+    <!-- Pass-Input -->
+    <div class="input-profile">
+      <p class="label">Contraseña</p>
+      <app-input
+        placeholder="•••••••••••"
+        [eyeIcon]="true"
+        type="password"
+        formControlName="password"
+        [required]="true"
+        [profileClass]="false"
+      />
+    </div>
+
+    <!-- Center-Input -->
+    <div class="input-profile">
+      <p class="label">Center</p>
+      <div class="content-input">
+        <p>{{ user.center.name }}</p>
+        <img src="../../../assets/svg/icon-padlock.svg" alt="" />
+      </div>
+    </div>
+
+    <!-- Position-Input -->
+    <div class="input-profile">
+      <p class="label">Cargo</p>
+      <app-select
+        placeholder="Cargo"
+        [initialOption]="getInitialPosition()"
+        [options]="positions"
+      />
+    </div>
+
+    <!-- Team-Input -->
+    <div class="input-profile">
+      <p class="label">Team</p>
+      <div class="content-input">
+        <p>{{ user.team.name }}</p>
+        <img src="../../../assets/svg/icon-padlock.svg" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!--**** Query ****-->
+  <div class="querys-text">
+    <p>
+      Si quieres cambiar de equipo, o tienes alguna duda, escribe a
+      <a target="_blank" href="mailto:soporte@antheliosleague.com"
+        >soporte&#64;antheliosleague.com</a
+      >
+    </p>
+  </div>
+
+  <!--**** Buttons ****-->
+  <div class="btn-container">
+    <app-button
+      [text]="'GUARDAR CAMBIOS'"
+      [classBtn]="'btn-primary'"
+      type="submit"
+      [disable]="!baseForm.valid"
+      (onClick)="handleSubmit()"
+    />
+    <app-button
+      [text]="'ELIMINAR CUENTA'"
+      [classBtn]="'btn-secondary'"
+      type="button"
+      (onClick)="toggleConfirmationModal()"
+    />
+  </div>
+</form>
+
+<p-dialog
+  [(visible)]="confirmationModal"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [showHeader]="false"
+  [closable]="false"
+  class="delete-confirmation-modal"
+>
+  <div class="container">
+    <h2>¿Deseas eliminar la cuenta?</h2>
+
+    <div class="buttons-container">
+      <app-button
+        text="Cancelar"
+        [classBtn]="'btn-primary btn-dialog'"
+        (onClick)="toggleConfirmationModal()"
+      />
+      <app-button
+        [text]="loading ? 'Eliminando...' : 'Eliminar'"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (onClick)="confirmDelete()"
+        [loading]="loading"
+      />
+    </div>
+  </div>
+</p-dialog>

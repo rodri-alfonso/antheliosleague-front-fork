@@ -1,0 +1,20 @@
+<router-outlet></router-outlet>
+
+<p-dialog
+  [showHeader]="false"
+  [(visible)]="isModalOpen"
+  [style]="{ width: '30vw', position: 'absolute' }"
+  [breakpoints]="{ '960px': '75vw' }"
+>
+  <div class="reload-modal-container">
+    <p>Hay una nueva actualizacion, recarga el navegador para continuar</p>
+
+    <div class="reload-modal-buttons-container">
+      <app-button
+        text="Recargar"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (click)="handleReload()"
+      />
+    </div>
+  </div>
+</p-dialog>

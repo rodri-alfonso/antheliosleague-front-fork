@@ -1,0 +1,28 @@
+.app-spinner-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+
+  & .p-progress-spinner {
+    width: 60px;
+    height: 60px;
+  }
+
+  circle {
+    stroke: #1e529d;
+    animation: unset;
+  }
+}
+
+.logout-spinner {
+  & .p-progress-spinner {
+    width: 25px;
+    height: 25px;
+  }
+
+  circle {
+    stroke: #ffec2d;
+    animation: unset;
+  }
+}

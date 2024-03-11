@@ -1,0 +1,41 @@
+<auth-layout>
+  <div class="formBox">
+    <h1 class="title-main">CREA TU EQUIPO</h1>
+    <div class="team-form">
+      <div class="formHeader">
+        @if(center.teams?.length > 0){
+        <p>
+          El <span>{{ center.name }}</span> ya cuenta con varios Equipos.
+        </p>
+        <p>¿Deseas unirte?</p>
+        } @else {
+        <p>
+          El <span>{{ center.name }}</span> no cuenta con Equipos actualmente.
+        </p>
+        <p>¿Deseas crear uno?</p>
+        }
+      </div>
+
+      <div class="teams-container">
+        @if(center.teams?.length > 0){ @for (team of center.teams; track
+        team.name) {
+        <app-team-card
+          [team]="team"
+          (teamEvent)="onSubmit(team)"
+        ></app-team-card>
+        } }
+      </div>
+
+      <div class="button-container">
+        <div class="buttons-content">
+          <app-button
+            [text]="'Crear equipo nuevo'"
+            [classBtn]="'btn-primary'"
+            type="submit"
+            (onClick)="createNewTeam()"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</auth-layout>

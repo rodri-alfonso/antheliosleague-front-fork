@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  place-items: center;
+
+  .buttons {
+    display: grid;
+    width: 170px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,31 @@
+@if(selectedAvatar){
+<div class="selected-avatar-container">
+  <img
+    [src]="
+      '../../../../assets/' + optionsType + '/' + selectedAvatar.code + '.png'
+    "
+    class="avatar"
+  />
+  <button type="button" (click)="handleAvatarChange($event)">Modificar</button>
+</div>
+
+} @else {
+<p-dropdown
+  [options]="optionsType === 'avatars' ? avatars : logos"
+  [(ngModel)]="selectedAvatar"
+  optionLabel="name"
+  styleClass="app-select customselect"
+  (onChange)="onChange($event)"
+  [placeholder]="placeholder"
+>
+  <ng-template let-avatar pTemplate="item">
+    <button class="selector" type="button" (click)="changeAvatar(avatar.code)">
+      <img
+        [src]="'../../../../assets/' + optionsType + '/' + avatar.code + '.png'"
+        class="avatar"
+      />
+    </button>
+  </ng-template>
+</p-dropdown>
+
+}

@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  place-items: center;
+  gap: 10%;
+  margin-top: 20%;
+
+  .logo-container {
+    position: relative;
+    .banner {
+      width: 310px;
+      height: 208px;
+      object-fit: contain;
+    }
+    .round-number {
+      position: absolute;
+      top: 47%;
+      left: 40%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 100px;
+      color: #1e529d;
+      font-family: "Teko";
+      &.one {
+        left: 42%;
+      }
+    }
+  }
+
+  .content {
+    display: grid;
+    gap: 14px;
+
+    p {
+      font-size: 28px;
+      font-weight: 800;
+    }
+  }
+}

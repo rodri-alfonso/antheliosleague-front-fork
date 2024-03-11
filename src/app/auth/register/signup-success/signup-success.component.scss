@@ -1,0 +1,377 @@
+.main-success {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  .info-modal {
+    width: 100%;
+    height: 100%;
+    padding: 70px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+    background: linear-gradient(#1e529d, #091025);
+    .greeting-text {
+      font-size: 12px;
+      color: #ffec2d;
+      font-family: "Montserrat";
+      font-weight: 600;
+      span {
+        font-size: 13px;
+        color: #fff;
+        font-family: "Montserrat";
+        font-weight: 700;
+      }
+    }
+    .team-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .team {
+        font-size: 8px;
+        font-family: "Montserrat";
+      }
+      .team-name {
+        font-size: 26px;
+        font-family: "UnicaOne";
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+    button {
+      width: 100%;
+      padding: 17px;
+      margin-top: 5px;
+      cursor: pointer;
+      color: #174380;
+      font-size: 18px;
+      font-family: "UnicaOne";
+      font-weight: bolder !important;
+      -webkit-text-stroke-width: 0.8px;
+      -webkit-text-stroke-color: #133266;
+      letter-spacing: 2.5px;
+      border: none;
+      border-radius: 50px;
+      background-color: #ffec2d;
+
+      &:focus,
+      &:active {
+        box-shadow: 0 0 0 0.2rem #bfdbfe;
+        outline: 0 none;
+        outline-offset: 0;
+      }
+    }
+    .support {
+      font-size: 10px;
+      font-family: "Montserrat";
+      a {
+        color: #ffec2d;
+        font-weight: 600;
+        font-family: "Montserrat";
+      }
+    }
+    .line {
+      width: 100px;
+      height: 1.3px;
+      background-color: #ffec2d;
+    }
+    .access-text {
+      font-size: 10px;
+      font-family: "Montserrat";
+      span {
+        font-weight: 700;
+        font-family: "Montserrat";
+      }
+    }
+    .steps-title {
+      color: #ffec2d;
+      font-size: 18px;
+      font-family: "UnicaOne";
+    }
+    .step-one {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .container-opsyst {
+        display: flex;
+        gap: 20px;
+        .op-syst {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          p {
+            font-size: 10px;
+            font-family: "Montserrat";
+            span {
+              font-weight: 700;
+              font-family: "Montserrat";
+            }
+          }
+          img {
+            width: 20px;
+          }
+        }
+      }
+    }
+    .step-two {
+      display: flex;
+      flex-direction: column;
+      .choice-text {
+        margin-top: 2px;
+        font-size: 10px;
+        font-family: "Montserrat";
+      }
+      .icons-links {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        img {
+          margin-top: 10px;
+          width: 25px;
+        }
+      }
+    }
+  }
+}
+
+/**********  Mwdia Query 450 ***********/
+
+@media (min-width: 650px) and (max-height: 700px) {
+  .main-success {
+    height: 99%;
+    .info-modal {
+      padding: 15px 20px;
+      gap: 6px;
+      font-size: 6px;
+      font-weight: 500;
+      line-height: 15px;
+      .greeting-text {
+        font-size: 10px;
+        span {
+          font-size: 11px;
+          color: #fff;
+          font-family: "Montserrat";
+          font-weight: 700;
+        }
+      }
+      .team-container {
+        gap: 8px;
+        .team {
+          font-size: 6px;
+        }
+        .team-name {
+          font-size: 20px;
+        }
+      }
+      button {
+        width: 220px;
+        padding: 12px;
+        font-size: 15px;
+        -webkit-text-stroke-width: 0.9px;
+        -webkit-text-stroke-color: #133266;
+        letter-spacing: 2.2px;
+        border-radius: 50px;
+      }
+      .support {
+        font-size: 8px;
+        a {
+          font-weight: 600;
+        }
+      }
+      .line {
+        width: 100px;
+        height: 1.3px;
+        background-color: #ffec2d;
+      }
+      .access-text {
+        font-size: 8px;
+        span {
+          font-weight: 700;
+        }
+      }
+      .steps-title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .step-one {
+        gap: 8px;
+        .container-opsyst {
+          gap: 20px;
+          .op-syst {
+            gap: 5px;
+            p {
+              font-size: 8px;
+              span {
+                font-weight: 700;
+              }
+            }
+            img {
+              width: 15px;
+            }
+          }
+        }
+      }
+      .step-two {
+        .choice-text {
+          font-size: 8px;
+        }
+        .icons-links {
+          gap: 10px;
+          img {
+            margin-top: 5px;
+            width: 17px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/**********  Mwdia Query 1400 ***********/
+
+@media (min-width: 1400px) {
+  .main-success {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .info-modal {
+      width: 100%;
+      height: 100%;
+      padding: 15% 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 15px;
+      font-size: 12px;
+      background: linear-gradient(#1e529d, #091025);
+      .greeting-text {
+        color: #ffec2d;
+        font-family: "Montserrat";
+        font-weight: 600;
+      }
+      .team-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        .team {
+          font-size: 8px;
+          font-family: "Montserrat";
+        }
+        .team-name {
+          font-size: 26px;
+          font-family: "UnicaOne";
+          font-weight: 500;
+        }
+      }
+      button {
+        width: 100%;
+        padding: 17px;
+        margin-top: 5px;
+        color: #174380;
+        font-size: 18px;
+        font-family: "UnicaOne";
+        font-weight: bolder !important;
+        -webkit-text-stroke-width: 0.8px;
+        -webkit-text-stroke-color: #133266;
+        letter-spacing: 2.5px;
+        border: none;
+        border-radius: 50px;
+        background-color: #ffec2d;
+      }
+      .support {
+        font-size: 10px;
+        font-family: "Montserrat";
+        a {
+          color: #ffec2d;
+          font-weight: 600;
+          font-family: "Montserrat";
+        }
+      }
+      .line {
+        width: 100px;
+        height: 1.3px;
+        background-color: #ffec2d;
+      }
+      .access-text {
+        font-size: 10px;
+        font-family: "Montserrat";
+        span {
+          font-weight: 700;
+          font-family: "Montserrat";
+        }
+      }
+      .steps-title {
+        color: #ffec2d;
+        font-size: 18px;
+        font-family: "UnicaOne";
+      }
+      .step-one {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .container-opsyst {
+          display: flex;
+          gap: 20px;
+          .op-syst {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            p {
+              font-size: 10px;
+              font-family: "Montserrat";
+              span {
+                font-weight: 700;
+                font-family: "Montserrat";
+              }
+            }
+            img {
+              width: 20px;
+            }
+          }
+        }
+      }
+      .step-two {
+        display: flex;
+        flex-direction: column;
+        .choice-text {
+          margin-top: 2px;
+          font-size: 10px;
+          font-family: "Montserrat";
+        }
+        .icons-links {
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          img {
+            margin-top: 10px;
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}

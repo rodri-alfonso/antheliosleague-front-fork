@@ -1,0 +1,108 @@
+<app-layout
+  title="Perfil"
+  (formEvent)="handleClickBack()"
+  [isDarkBlue]="openProfileEditor"
+>
+  @if(openProfileEditor){
+  <profile-editor [user]="user" />
+  }@else{
+  <section class="container">
+    @if(loading){
+    <div style="padding-top: 10px">
+      <app-spinner />
+    </div>
+    }@else{
+    <div class="player-data">
+      <div class="main-avatar">
+        <img
+          [src]="'../../assets/avatars/' + user.avatar + '.png'"
+          alt="Imagen de avatar "
+        />
+
+        <div class="btn-secondary main-points">
+          <p>{{ user.points }}</p>
+          <img src="../../assets/svg/sun.svg" alt="" />
+        </div>
+      </div>
+      <div class="data">
+        <div class="member-name">{{ user.nickname }}</div>
+        <div class="team-center">
+          <p class="team-name">{{ user.team.name }}</p>
+          <p class="center-name">{{ user.center.name }}</p>
+        </div>
+        <app-button
+          [text]="'EDITAR PERFIL'"
+          [classBtn]="'btn-secondary btn-profile'"
+          (onClick)="toggleProfileEditor()"
+        />
+      </div>
+    </div>
+
+    <app-round-card
+      label="MI EQUIPO"
+      [buttonLabel]="'INVITAR A JUGADORES'"
+      (onClickButton)="share()"
+    >
+      <div class="content-card">
+        <!-- Header card -->
+        <div class="team">
+          <div class="logo">
+            <img
+              [src]="'../../assets/logos/' + team.avatar + '.png'"
+              alt="Imagen de avatar "
+            />
+          </div>
+          <div class="data">
+            <p class="team-name">{{ team.name }}</p>
+            <p class="center-name">{{ user.center.name }}</p>
+
+            <div class="btn-secondary points">
+              <p>{{ team.points }}</p>
+              <img src="../../assets/svg/sun.svg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Member list -->
+        <div class="members-list">
+          @for (member of usersToPaginator[paginationStep]; track $index) {
+          <div class="member">
+            <img
+              [src]="'../../assets/avatars/' + member.avatar + '.png'"
+              alt="Imagen de avatar "
+            />
+            <div class="member-name">{{ member.nickname }}</div>
+            <div class="btn-secondary points">
+              <p>{{ member.points }}</p>
+              <img src="./assets/svg/sun.svg" alt="" />
+            </div>
+          </div>
+          }
+        </div>
+
+        <div>
+          <!-- Buttons navigation -->
+          <div class="btn-navigation">
+            <img
+              class="btn-icon {{ paginationStep === 0 ? 'disabled' : '' }}"
+              src="./assets/svg/icon-back.svg"
+              alt=""
+              (click)="handleClickBackStep()"
+            />
+
+            <img
+              class="btn-icon {{
+                paginationStep === usersToPaginator.length - 1 ? 'disabled' : ''
+              }}"
+              src="./assets/svg/icon-next.svg"
+              alt=""
+              (click)="handleClickNextStep()"
+            />
+          </div>
+        </div>
+      </div>
+    </app-round-card>
+    }
+  </section>
+  }
+</app-layout>

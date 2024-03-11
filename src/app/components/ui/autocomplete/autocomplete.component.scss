@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  place-items: center;
+  padding: 30px 0;
+  gap: 24px;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

@@ -1,0 +1,98 @@
+:root {
+  --header-font: "Open", sans-serif;
+  --body-font: "Barlow", sans-serif;
+  --acent-font: "UnicaOne", sans-serif;
+}
+
+html,
+body {
+  font-size: 100%;
+  font-family: var(--body-font);
+  letter-spacing: 1px;
+  color: white;
+
+  @font-face {
+    font-family: "Barlow";
+    font-weight: 300;
+    src: url("../assets/fonts/BarlowCondensed-Light.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow";
+    font-weight: 400;
+    src: url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow";
+    font-weight: 500;
+    src: url("../assets/fonts/BarlowCondensed-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Open";
+    font-weight: 300;
+    src: url("../assets/fonts/OpenSans_SemiCondensed-Light.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "Open";
+    font-weight: 400;
+    src: url("../assets/fonts/OpenSans_SemiCondensed-Regular.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "Open";
+    font-weight: 500;
+    src: url("../assets/fonts/OpenSans_SemiCondensed-Medium.ttf")
+      format("truetype");
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-VariableFont.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "UnicaOne";
+    src: url("../assets/fonts/UnicaOne-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Barlow-light";
+    src: url("../assets/fonts/BarlowCondensed-Light.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow-regular";
+    src: url("../assets/fonts/BarlowCondensed-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow-medium";
+    src: url("../assets/fonts/BarlowCondensed-Medium.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow-semiBold";
+    src: url("../assets/fonts/BarlowCondensed-SemiBold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Barlow-black";
+    src: url("../assets/fonts/BarlowCondensed-Black.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Teko";
+    src: url("../assets/fonts/Teko-VariableFont_wght.ttf") format("truetype");
+  }
+}
+
+.app-title {
+  color: white;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: 8px;
+  text-shadow: 1px 1px 4px #ffffffd0, -1px -1px 4px #ffffffd0;
+  text-align: center;
+}
+
+.signup-title {
+  @extend .app-title;
+  font-size: 16px;
+  text-transform: uppercase;
+}

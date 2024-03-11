@@ -1,0 +1,56 @@
+<app-layout
+  [title]="roundsTitle"
+  (formEvent)="handleClickBackEvent()"
+  style="margin-bottom: 40px"
+>
+  @if(loading){
+  <div style="padding-top: 100px">
+    <app-spinner />
+  </div>
+  }@else { @if(selectedRound){ @switch (step) { @case (0) {
+  <h2 class="round-title">RONDA {{ selectedRound.number }} - PREGUNTA 1</h2>
+  <explanation-step
+    (formEvent)="handleFormEvent($event)"
+    [round]="selectedRound"
+  />
+  } @case (1) {
+  <h2 class="round-title">RONDA {{ selectedRound.number }}</h2>
+  <round-info-step
+    (formEvent)="handleFormEvent($event)"
+    [round]="selectedRound"
+  />
+  } @case (2) {
+  <h2 class="round-title">RONDA {{ selectedRound.number }} - PREGUNTA 1</h2>
+  <round-question-step
+    (formEvent)="handleFormEvent($event)"
+    [hasQueryParam]="hasQueryParam"
+    [round]="selectedRound"
+  />
+  }@case (3) {
+  <h2 class="round-title"></h2>
+  <app-results
+    (formEvent)="handleFormEvent($event)"
+    [round]="selectedRound"
+    [roundNumber]="selectedRound.number"
+    [hasCorrectAnswer]="hasCorrectAnswer"
+    [userChoice]="selectedRound.userChoice"
+  />
+  } } } @else{
+  <h2 class="round-title">Repasa rondas anteriores:</h2>
+  <div class="container-list">
+    @if (rounds.length > 0) { @for (round of rounds; track $index) {
+    <div class="round-card">
+      <h3>Ronda {{ round.number }}</h3>
+      <app-button
+        [text]="loadingRoundId ? 'Accediendo...' : 'ver respuestas'"
+        [classBtn]="'btn-primary rounds-btn'"
+        (onClick)="handleSelectRound(round.number)"
+        [loading]="round.number === loadingRoundId"
+      />
+    </div>
+    } } @else {
+    <div class="not-rounds"><h3>Aún no hay resultados disponibles</h3></div>
+    }
+  </div>
+  } }
+</app-layout>

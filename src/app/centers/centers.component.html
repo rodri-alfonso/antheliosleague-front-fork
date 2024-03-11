@@ -1,0 +1,62 @@
+<app-layout title="Centros" (formEvent)="handleClickBack()">
+  <div class="filter">
+    <p class="filter-title">Escribe aquí para buscar un centro:</p>
+
+    <!-- <app-autocomplete placeholder="Centro" /> -->
+
+    <div class="input-container">
+      <app-input (input)="onChange($event)" placeholder="Centros" />
+      <svg
+        width="24"
+        height="25"
+        viewBox="0 0 24 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="11" cy="11.5" r="7" stroke="#00A3E0" stroke-width="2" />
+        <path
+          d="M20 20.5L17 17.5"
+          stroke="#00A3E0"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <div class="container-list">
+    @for (center of filteredCenters; track $index) {
+    <div class="center-card">
+      @if(center.teams.length > 0){
+      <div class="row-container active">
+        <p class="name">{{ center.name }}</p>
+        <app-button
+          [text]="'EQUIPO'"
+          [classBtn]="'btn-secondary btn-centers'"
+          (onClick)="handleClick($index)"
+        />
+      </div>
+      <ul class="teams-container" id="center-{{ $index }}">
+        @for (team of center.teams; track team.name) {
+        <li>
+          {{ team.name }}
+        </li>
+        }
+      </ul>
+      } @else {
+      <div class="center-card">
+        <div class="row-container inactive">
+          <p class="name inactive">{{ center.name }}</p>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</app-layout>
+
+<!-- <div class="center-card">
+  <div class="row-container inactive">
+    <p class="name inactive">{{ center.name }}</p>
+  </div>
+</div> -->

@@ -1,0 +1,44 @@
+@import "../../partials/colors";
+
+.container-list {
+  min-width: 330px;
+  border-radius: 17px;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  background: $card-gradient-rounds;
+
+  .awards-title {
+    font-family: "UnicaOne";
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .round-card {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #1e529d;
+
+    .awards-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .details {
+        font-family: "Barlow-medium";
+        font-size: 18px;
+        letter-spacing: -0.7px;
+      }
+    }
+  }
+}

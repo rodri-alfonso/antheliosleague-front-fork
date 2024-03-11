@@ -1,0 +1,55 @@
+<p-toast
+  [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }"
+  class="app-toast"
+></p-toast>
+<p-autoComplete
+  [dropdown]="true"
+  [suggestions]="filteredOptions"
+  (completeMethod)="filterOption($event)"
+  field="name"
+  dropdownIcon="{{ icon }}"
+  placeholder="{{ placeholder }}"
+  styleClass="{{ firstBold && 'first-bold' }}"
+  (onSelect)="onSelect($event)"
+  (completeMethod)="handleCompleteMethod($event)"
+  [forceSelection]="true"
+  id="autocomplete-id"
+>
+  <ng-template let-center pTemplate="item" class="p-autocomplete-item">
+    <span class="{{ center.teams?.length !== 0 ? 'highlight-item' : '' }}">{{
+      center.name.toLowerCase()
+    }}</span>
+  </ng-template>
+</p-autoComplete>
+
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '85%' }"
+  [draggable]="false"
+  [resizable]="false"
+  [showHeader]="false"
+  class="center-modal-container"
+>
+  <div class="container">
+    <h2>
+      <span>"{{ value }}"</span><br />
+      no está en el listado
+    </h2>
+    <p>¿Estás seguro que deseas añadirlo?</p>
+
+    <div class="buttons-container">
+      <app-button
+        text="Añadir"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (onClick)="acceptDialog()"
+        [loading]="loading"
+      />
+      <app-button
+        text="Cancelar"
+        [classBtn]="'btn-secondary btn-dialog'"
+        (onClick)="hideDialog()"
+      />
+    </div>
+  </div>
+</p-dialog>

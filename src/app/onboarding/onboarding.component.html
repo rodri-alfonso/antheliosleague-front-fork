@@ -1,0 +1,38 @@
+<auth-layout>
+  <h1 class="title-onboarding">
+    BIENVENIDOS A <br />
+    ANTHELIOS LEAGUE
+  </h1>
+  <div class="carousel-container">
+    <p-carousel
+      [value]="infos"
+      [numVisible]="1"
+      [numScroll]="1"
+      [circular]="false"
+      [responsiveOptions]="responsiveOptions"
+      (onPage)="page($event)"
+    >
+      <ng-template let-info pTemplate="item">
+        @switch (info) { @case (1){
+        <app-card-info></app-card-info>
+        } @case (2){
+        <app-card-puntuaciones></app-card-puntuaciones>
+        } @case (3){
+        <app-card-comodines></app-card-comodines>
+        } @case (4){
+        <app-card-booster></app-card-booster>
+        } }
+      </ng-template>
+      <ng-template let-info pTemplate="footer">
+        <div class="button-container">
+          <app-button
+            [text]="'Finalizar'"
+            [classBtn]="'btn-primary'"
+            [disable]="!isLast"
+            (click)="goHome()"
+          ></app-button>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</auth-layout>

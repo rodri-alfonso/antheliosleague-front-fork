@@ -1,0 +1,59 @@
+<div class="ranking__container">
+  <div class="ranking__podium">
+    <div class="ranking__avatars">
+      @for (item of top; track item.position) {
+      <div class="ranking__avatars__{{ item.position }}">
+        <score-card
+          imageUrl="/assets/{{ instance }}/{{ item.avatar }}.png"
+          [score]="item.points"
+          labelPrimary="{{ isTeam ? item.name : item.fullname }}"
+          labelSecondary="{{ item.center }}"
+        ></score-card>
+      </div>
+      }
+    </div>
+    <img
+      src="{{
+        isTeam
+          ? './assets/svg/podium-yellow.svg'
+          : './assets/svg/podium-blue.svg'
+      }}"
+      class=""
+      alt=""
+    />
+    <div class="flare"></div>
+  </div>
+  <ul class="ranking__table">
+    @if(isTeam){ @for (item of list; track item.position) {
+    <li class="item {{ item.id === userData.idTeam ? 'team-position' : '' }}">
+      <p>{{ item.position }} |</p>
+      <div class="item__info">
+        <img src="/assets/{{ instance }}/{{ item.avatar }}.png" alt="avatar" />
+        <div>
+          <p>{{ item.name }}</p>
+          <span>{{ item.center }}</span>
+        </div>
+      </div>
+      <div class="item__score">
+        <span>{{ item.points }}</span>
+        <img src="assets/svg/sun.svg" alt="" />
+      </div>
+    </li>
+    } } @else { @for (item of list; track item.position) {
+    <li class="item {{ item.id === userData.idUser ? 'user-position' : '' }}">
+      <p>{{ item.position }} |</p>
+      <div class="item__info">
+        <img src="/assets/{{ instance }}/{{ item.avatar }}.png" alt="avatar" />
+        <div>
+          <p>{{ item.fullname }}</p>
+          <span>{{ item.center }}</span>
+        </div>
+      </div>
+      <div class="item__score">
+        <span>{{ item.points }}</span>
+        <img src="assets/svg/sun.svg" alt="" />
+      </div>
+    </li>
+    } }
+  </ul>
+</div>

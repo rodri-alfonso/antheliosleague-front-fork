@@ -1,0 +1,10 @@
+.conditions-modal {
+  & .p-dialog-header {
+    padding-left: 10px;
+  }
+
+  & .p-dialog-content {
+    border-radius: 0 0 10px 10px !important;
+    padding: 0 10px 10px;
+  }
+}

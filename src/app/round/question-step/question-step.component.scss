@@ -1,0 +1,46 @@
+@import "../../../partials/colors";
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid white;
+    padding: 0 3rem;
+    padding-left: 1rem;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      background: $secondary-color;
+      color: $primary-color-dark;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 14px;
+      padding: 0;
+      b {
+        font-size: 20px;
+      }
+    }
+  }
+  &__selected {
+    background: $secondary-color;
+    color: $primary-color-dark;
+    label {
+      b {
+        font-weight: 800;
+      }
+    }
+  }
+}

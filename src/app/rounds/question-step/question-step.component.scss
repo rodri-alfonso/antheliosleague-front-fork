@@ -1,0 +1,123 @@
+@import "../../../partials/colors";
+
+app-round-card {
+  display: flex;
+  justify-content: center;
+
+  .content-question-card {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+
+    & .aswers {
+      width: 100%;
+      border-top: 1px solid white;
+
+      & .answers__selected {
+        background: #4bf079 !important;
+        color: $primary-color-dark;
+        width: 100% !important;
+        label {
+          b {
+            font-weight: 800;
+          }
+        }
+
+        &:hover {
+          background: #4bf079 !important;
+          color: $primary-color-dark !important;
+        }
+      }
+      & .answers__wrong {
+        background: #ff4444 !important;
+        color: $primary-color-dark;
+        width: 100% !important;
+        label {
+          b {
+            font-weight: 800;
+          }
+        }
+
+        &:hover {
+          background: #ff4444 !important;
+          color: $primary-color-dark !important;
+        }
+      }
+
+      & .answers__item {
+        cursor: default;
+
+        &:hover {
+          background: unset;
+          color: white;
+        }
+
+        label {
+          cursor: default !important;
+        }
+      }
+      .radio-content {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background-color: $secondary-color;
+        margin: 10px 0;
+        padding: 11px;
+      }
+    }
+
+    .checked-icon-container {
+      display: grid;
+      place-items: center;
+      padding: 10px 0;
+      margin-left: -4px;
+    }
+    & .fixed-size {
+      margin-left: 4px !important;
+    }
+  }
+
+  .answer-button-container {
+    display: grid;
+    place-items: center;
+    gap: 16px;
+
+    h2 {
+      font-family: "UnicaOne";
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: white;
+      font-size: 12px;
+    }
+  }
+
+  & .score-container {
+    padding-top: 10px;
+    display: grid;
+    place-items: center;
+    gap: 2px;
+    text-align: center;
+
+    & .score-content {
+      padding-top: 6px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 22px;
+        height: 22px;
+      }
+      span {
+        font-family: "UnicaOne";
+        font-size: 24px;
+        color: #ffec2d;
+      }
+    }
+  }
+}

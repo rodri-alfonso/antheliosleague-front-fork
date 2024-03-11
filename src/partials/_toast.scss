@@ -1,0 +1,19 @@
+.app-toast {
+  & .p-toast-message-error {
+    padding: 20px;
+  }
+
+/*   & .p-toast-message {
+  } */
+
+  & .p-toast-message-icon {
+    margin-right: 10px;
+  }
+}
+.p-dialog{
+  .p-dialog-content {
+    &:last-of-type {      
+      border-radius: 10px;
+    }
+  }
+}    

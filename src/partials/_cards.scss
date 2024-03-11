@@ -1,0 +1,159 @@
+@import "colors";
+
+.blue-card {
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  border-radius: 17px;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  background: $card-gradient;
+
+  &.container-cards {
+    width: 90%;
+    min-width: 330px;
+    background: $card-gradient-rounds;
+  }
+
+  h3,
+  .subtitle-card {
+    font-family: "UnicaOne";
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  p,
+  b {
+    font-size: 14px;
+    text-align: center;
+    text-wrap: pretty;
+    line-height: normal;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .subtitle-yellow {
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: $secondary-color;
+      text-transform: none;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  ol {
+    text-align: center;
+    list-style: decimal;
+    li {
+      text-wrap: nowrap;
+    }
+  }
+
+  &.question-card {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .content {
+    display: grid;
+    gap: 40px;
+    width: 100%;
+
+    .buttons {
+      display: grid;
+      gap: 16px;
+    }
+  }
+  .result-content {
+    display: grid;
+    gap: 40px;
+    width: 100%;
+  }
+  .footer {
+    position: absolute;
+    bottom: -15px;
+
+    .btn-app {
+      padding: 1rem 3rem;
+      text-wrap: wrap;
+    }
+  }
+
+  .item-w-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+
+    img {
+      width: 70px;
+    }
+
+    p {
+      text-align: center;
+      color: white;
+    }
+
+    b {
+      text-align: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    .score {
+      font-size: 28px;
+      text-align: center;
+      display: flex;
+      align-items: stretch;
+      color: $secondary-color;
+      gap: 0.3rem;
+      img {
+        width: 30px;
+      }
+    }
+  }
+  .summary-title {
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: $secondary-color;
+  }
+}
+
+@media (min-width: 650px) {
+  .blue-card {
+    max-width: 350px;
+
+    &.container-cards {
+      min-width: 350px;
+      min-height: 670px;
+    }
+
+    p,
+    b {
+      font-size: 16px;
+      text-align: center;
+      text-wrap: pretty;
+      line-height: normal;
+    }
+  }
+}

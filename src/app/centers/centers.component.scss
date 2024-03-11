@@ -1,0 +1,100 @@
+@import "../../partials/colors";
+
+.filter {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .filter-title {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-family: "Barlow-medium";
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: #133266;
+  }
+
+  .input-container {
+    width: 272px;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 9px;
+      right: 10px;
+    }
+  }
+}
+
+.container-list {
+  width: 320px;
+  min-height: 500px;
+  max-height: 70dvh;
+  overflow-y: scroll;
+  border-radius: 17px;
+  padding: 1.5rem 1rem 1.5rem 1rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  background: $card-gradient-rounds;
+
+  .center-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .row-container {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &.active {
+        background-color: #1e529d;
+      }
+      &.inactive {
+        background-color: #133266;
+      }
+
+      .name {
+        width: 65%;
+        height: 100%;
+        font-family: "Barlow-medium";
+        font-size: 16px;
+        letter-spacing: -0.2px;
+        &.inactive {
+          color: #4776b8;
+        }
+      }
+      app-button {
+        // width: 35%;
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+    .teams-container {
+      background-color: #133266;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px;
+      font-size: 18px;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &.active {
+        display: flex;
+      }
+    }
+  }
+}

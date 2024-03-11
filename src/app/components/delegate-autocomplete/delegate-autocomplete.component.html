@@ -1,0 +1,17 @@
+<p-autoComplete
+  [dropdown]="true"
+  [suggestions]="filteredOptions"
+  (completeMethod)="filterOption($event)"
+  field="fullname"
+  placeholder="Delegados"
+  (onSelect)="onSelect($event)"
+  (completeMethod)="handleCompleteMethod($event)"
+  [forceSelection]="true"
+  class="delegate-autocomplete"
+>
+  <ng-template let-delegate pTemplate="item" class="p-autocomplete-item">
+    <span>{{
+      (delegate.fullname + " / " + delegate.region).toLowerCase()
+    }}</span>
+  </ng-template>
+</p-autoComplete>

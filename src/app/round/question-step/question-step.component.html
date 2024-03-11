@@ -1,0 +1,37 @@
+<section class="container">
+  <app-round-card
+    label="La pregunta"
+    [buttonLabel]="loading ? 'Enviando' : 'Enviar'"
+    (onClickButton)="handleClick()"
+    [disabledButton]="!selectedAnswerId"
+    [loadingButton]="loading"
+  >
+    <div class="content">
+      <b> ¿Cuál es tu diagnóstico? </b>
+
+      <form class="aswers">
+        @for (answer of answers; track $index) {
+        <div
+          class="answers__item {{
+            selectedAnswerId === answer.id ? 'answers__selected' : ''
+          }}"
+          (click)="selectAnswer(answer.id)"
+        >
+          <p-radioButton
+            [styleClass]="'answer__item'"
+            [inputId]="answer.id"
+            name="answer"
+            [value]="answer.id"
+            [(ngModel)]="selectedAnswerId"
+          ></p-radioButton>
+          <label [for]="answer.id" [style]="{ cursor: 'pointer' }"
+            ><b>{{ getLetterKeyById($index) }}</b> {{ answer.label }}</label
+          >
+        </div>
+        }
+      </form>
+    </div>
+  </app-round-card>
+</section>
+
+

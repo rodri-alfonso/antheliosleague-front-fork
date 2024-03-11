@@ -1,0 +1,24 @@
+.tabs-container {
+  & .p-tabview-nav {
+    place-items: initial !important;
+    display: inline-flex !important;
+    gap: 0 !important;
+    background: linear-gradient(180deg, #1e529d 0%, #091025 100%);
+
+    & .p-tabview-nav-link {
+      background: unset !important;
+      text-shadow: unset !important;
+      padding: 8px 24px !important;
+      font-family: "UnicaOne";
+      color: #00a3e0 !important;
+    }
+  }
+
+  & .p-highlight {
+    & .p-tabview-nav-link {
+      background: linear-gradient(180deg, #00a3e0 0%, #1e529d 100%) !important;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.55));
+      color: white !important;
+    }
+  }
+}

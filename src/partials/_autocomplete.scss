@@ -1,0 +1,168 @@
+@import "colors";
+
+.p-autocomplete {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 7px;
+
+  .p-autocomplete-panel {
+    border-radius: 0;
+  }
+
+  input {
+    width: 100%;
+    height: 42px;
+    font-size: 16px;
+    color: #fff;
+    font-family: "Barlow-medium";
+    letter-spacing: 3.5px;
+    text-align: left;
+    border: none;
+    border-radius: 0;
+    background: $input-gradient;
+
+    &:focus + .p-autocomplete-dropdown {
+      background: $input-gradient;
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0.2rem 0 0 #bfdbfe, 0 -0.2rem 0 0 #bfdbfe,
+        0.2rem 0 0 0 #bfdbfe;
+    }
+
+    &::placeholder {
+      color: #00a3e0;
+      font-size: 14px;
+      font-family: "Barlow-regular";
+      letter-spacing: 1.5px;
+    }
+  }
+  & .p-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color-light;
+  }
+}
+.p-dialog {
+  .container {
+    h2 {
+      font-size: 12px;
+      font-family: "Montserrat";
+      font-weight: 500;
+      text-align: center;
+      color: #133266;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      span {
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Montserrat";
+        letter-spacing: 0.5px;
+      }
+    }
+    p {
+      font-size: 12px;
+      font-family: "Montserrat";
+      font-weight: 500;
+      text-align: center;
+      color: #133266;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.p-autocomplete-dd .p-autocomplete-dropdown {
+  width: 62px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  border: none;
+  background: $input-gradient;
+  span {
+    color: $primary-color-light;
+  }
+}
+
+.p-autocomplete-item {
+  font-size: 13px;
+  font-family: "Montserrat";
+  padding: 0.3rem;
+  span {
+    display: block;
+    letter-spacing: 2px;
+    font-weight: 600;
+    border-radius: 0;
+    border: none;
+    padding: 0.4rem;
+    width: 100%;
+    &.highlight-item {
+      background: $secondary-color-dark;
+      color: #fff !important;
+      font-weight: 600;
+    }
+  }
+
+  .ng-star-inserted {
+    text-transform: capitalize;
+  }
+
+  &:hover {
+    background: $secondary-color;
+  }
+
+  &[aria-label="Agregar centro"] {
+    span {
+      background: unset;
+      color: $primary-color !important;
+      font-family: Barlow-semiBold;
+    }
+  }
+}
+
+.p-overlay {
+  width: 80% !important;
+}
+
+/**********  Mwdia Query 450 ***********/
+
+@media (min-width: 650px) and (max-height: 700px) {
+  .p-autocomplete {
+    height: 30px;
+    input {
+      height: 30px;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      padding: 3px 0 3px 8px;
+      font-size: 12px;
+      &::placeholder {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+      }
+    }
+    & .p-icon-wrapper {
+      width: 12px;
+    }
+    .p-autocomplete-panel {
+      max-width: 100%;
+    }
+  }
+}
+.p-autocomplete-dd .p-autocomplete-dropdown {
+  width: 57px;
+  height: 100%;
+  padding: 0;
+  box-shadow: none;
+}
+
+.center-modal-container {
+  & .btn-secondary {
+    padding: 8px 10px;
+    width: 110px;
+  }
+}
+.p-autocomplete-item {
+  font-size: 12px;
+  padding: 0.2rem;
+}

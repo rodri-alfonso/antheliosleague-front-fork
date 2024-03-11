@@ -1,0 +1,171 @@
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+
+  .bg-main {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      250deg,
+      rgb(24, 95, 185) 0%,
+      rgb(190, 225, 255) 100%
+    );
+    z-index: -5;
+    .dots-mobile {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 350px;
+      opacity: 0.8;
+      z-index: -2;
+    }
+    .dots-desktop-left {
+      display: none;
+    }
+    .dots-desktop-right {
+      display: none;
+    }
+    .img-corner-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250px;
+      z-index: -1;
+    }
+    .logo-athelios {
+      position: absolute;
+      top: 35px;
+      left: 20px;
+      width: 80px;
+      z-index: -1;
+    }
+    .logo-laRoche {
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      width: 30%;
+    }
+    .img-corner-bottom {
+      position: absolute;
+      bottom: 0px;
+      right: 0;
+      width: 220px;
+      height: auto;
+      z-index: -1;
+    }
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    padding: 120px 0 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+.content::-webkit-scrollbar {
+  width: 0;
+}
+
+/**********  Media Query 450 ***********/
+
+@media (min-width: 650px) and (max-height: 700px) {
+  main {
+    justify-content: center;
+    .bg-main {
+      .dots-mobile {
+        display: none;
+      }
+      .dots-desktop-left {
+        display: block;
+        position: absolute;
+        top: -100px;
+        left: -150px;
+        width: 250px;
+        opacity: 0.6;
+        z-index: -2;
+      }
+      .dots-desktop-right {
+        display: block;
+        position: absolute;
+        top: -350px;
+        right: -50px;
+        width: 250px;
+        z-index: -2;
+      }
+
+      .logo-laRoche {
+        display: block;
+        top: 30px;
+        right: 30px;
+        width: 180px;
+      }
+    }
+    .content {
+      max-width: 350px;
+      padding: 100px 20px 0 20px;
+    }
+  }
+}
+@media (min-width: 650px) and (min-height: 700px) {
+  main {
+    justify-content: center;
+    .bg-main {
+      .img-corner-top {
+        width: 320px;
+      }
+      .dots-mobile {
+        display: none;
+      }
+      .dots-desktop-left {
+        display: block;
+        position: absolute;
+        top: -100px;
+        left: -150px;
+        width: 300px;
+        opacity: 0.8;
+        z-index: -2;
+      }
+      .dots-desktop-right {
+        display: block;
+        position: absolute;
+        top: -280px;
+        right: -10px;
+        width: 250px;
+        z-index: -2;
+      }
+      .logo-athelios {
+        position: absolute;
+        top: 35px;
+        left: 20px;
+        width: 110px;
+        z-index: -1;
+      }
+      .logo-laRoche {
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 40px;
+        width: 200px;
+      }
+      .img-corner-bottom {
+        width: 320px;
+      }
+    }
+    .content {
+      max-width: 400px;
+      height: auto;
+      padding: 120px 20px 0 20px;
+      overflow: visible;
+    }
+  }
+}

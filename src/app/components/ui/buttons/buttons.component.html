@@ -1,0 +1,9 @@
+<p-button
+  styleClass="{{ classBtn }}"
+  class="{{ loading ? 'loading' : '' }}"
+  label="{{ text }}"
+  [rounded]="true"
+  (onClick)="handleClick()"
+  [disabled]="disable"
+  [loading]="loading"
+></p-button>

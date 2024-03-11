@@ -1,0 +1,55 @@
+<app-round-card
+  label="EXPLICACIÓN"
+  [buttonLabel]="hasQueryParam ? 'Siguiente' : 'Finalizar'"
+  (onClickButton)="hasQueryParam ? handleClick() : handleFinish()"
+  [classCard]="'container-cards'"
+>
+  <div class="content">
+    <p>
+      {{ round?.roundCase?.question?.explanation }}
+    </p>
+  </div>
+  <!-- <div class="content">
+    <h2 class="subtitle-yellow">
+      DERMATOSCOPIA DE DERMATOFIBRIMA HEMOSIDERÓTICO
+    </h2>
+    <p>
+      Los dermatofibromas hemosideróticos se caracterizan por presentar varios
+      patrones dermatoscópicos.
+    </p>
+    <p>
+      El más significativo, compuesto por un área de pigmentación homogénea
+      prominente rodeada trata de un dermatofibroma hemosidérotico caracterizado
+      por presentar un retículo pigmentado “fino” en periferia, tiene una
+      especificad del 100 % y una sensibilidad del 69.1%
+    </p>
+
+    <h2 class="subtitle-yellow">PATRÓN EN ARCO IRIS</h2>
+    <p>
+      Estructura caracterizada por la presencia de múltiples áreas confluentes
+      de diferentes tonalidades habitualmente localizadas en la zona central de
+      la lesión.
+    </p>
+    <p>
+      Histológicamente se corresponden con plexos vasculares muy próximos entre
+      sí, lo que permite que debido al efecto de refracción de la luz se
+      aprecien distintas tonalidades.
+    </p>
+    <p>
+      Se ha descrito en sarcoma de Kaposi, dermatofibromas, melanomas,
+      granulomas piógenos, dermatitis de estasis y liquen plano, entre otros.
+    </p>
+
+    <h2 class="subtitle-yellow">BIBLIOGRAFÍA</h2>
+    <p class="bibligraphy-text">
+      Zaballos P, et al. Dermoscopy of haemosiderotic/aneurysmal dermatofibroma:
+      A morphological study of 110 cases. J Eur Acad Dermatol Venereol. 2023
+      Feb;37(2):317-327
+    </p>
+    <p>
+      Draghici C, Vajaitu C, Solomon I, Voiculescu VM, Popa MI, Lupu M. The
+      Dermoscopic Rainbow Pattern - A Review of the Literature. Acta
+      Dermatovenerol Croat. 2019 Jun;27(2):111-115
+    </p>
+  </div> -->
+</app-round-card>

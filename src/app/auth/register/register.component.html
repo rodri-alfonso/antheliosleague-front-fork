@@ -1,0 +1,18 @@
+@switch (currentStep) { @case (0) {
+<app-signup-team-creator
+  [centerName]="formData?.center?.name"
+  (formEvent)="handleFormEvent($event)"
+></app-signup-team-creator>
+} @case (1) {
+<app-signup (formEvent)="handleFormEvent($event)"></app-signup>
+
+} @case (2) {
+<app-signup-team
+  (formEvent)="handleFormEvent($event)"
+  (teamEvent)="handleTeamRegisterStep()"
+  [center]="currentCenter"
+></app-signup-team>
+
+} @case (3) {
+<app-signup-success [form]="formData"></app-signup-success>
+}}

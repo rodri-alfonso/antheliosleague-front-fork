@@ -1,0 +1,47 @@
+.app-share-sidebar {
+  & .p-sidebar {
+    padding: 10px;
+  }
+
+  & .p-sidebar-header {
+    padding-left: 10px;
+    span {
+      font-family: Barlow-regular;
+    }
+  }
+  & .p-sidebar-content {
+    padding-top: 6px;
+    display: flex;
+  }
+
+  & .button-content {
+    padding-top: 10px;
+    transition: all 0.2s ease-in-out;
+    :hover {
+      background-color: whitesmoke;
+      color: rgb(74, 74, 74);
+    }
+    :active {
+      transform: scale(0.99);
+    }
+  }
+  & .icon-content {
+    color: rgb(74, 74, 74);
+    border-radius: 6px;
+    border: none;
+    background: unset;
+    display: grid;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: grid;
+    place-items: center;
+
+    span {
+      font-size: 14px;
+      font-family: "Barlow-medium";
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<auth-layout>
+  <div class="formBox">
+    <h1 class="title-main">LOGIN</h1>
+
+    <div class="input-container">
+      <app-input
+        placeholder="e-mail"
+        (input)="onChange($event)"
+        [errorMessage]="errorMessage"
+      />
+      <app-input
+        placeholder="Contraseña"
+        [eyeIcon]="true"
+        type="password"
+        (input)="onChangePassword($event)"
+      />
+      <a class="recover-pass" routerLink="/forgot-password"
+        >¿Olvidó su contraseña?</a
+      >
+    </div>
+    <div class="button-container">
+      <app-button
+        [text]="isLoading ? 'Accediendo' : 'Acceder'"
+        [classBtn]="'btn-primary'"
+        (onClick)="onSubmit()"
+        [loading]="isLoading"
+        [disable]="!email || !password"
+      />
+      <a routerLink="/signup">
+        <app-button [text]="'Nuevo usuario'" [classBtn]="'btn-secondary'" />
+      </a>
+    </div>
+  </div>
+</auth-layout>
