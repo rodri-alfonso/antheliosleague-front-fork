@@ -22,6 +22,5 @@ export const appConfig: ApplicationConfig = {
       enabled: true,
       registrationStrategy: 'registerImmediately',
     }),
-    provideServiceWorker('ngsw-worker.js'), 
   ],
 };
