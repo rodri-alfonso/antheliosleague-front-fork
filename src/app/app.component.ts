@@ -25,8 +25,6 @@ export class AppComponent implements OnInit {
 
   isModalOpen = false;
 
-  ngOnInit(): void {}
-
   handleReload() {
     this.swUpdate.activateUpdate().then(() => window.location.reload());
   }
@@ -40,5 +38,16 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  ngOnInit() {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.versionUpdates.subscribe(() => {
+        if (confirm("Hay una nueva versión disponible. ¿Desea actualizar?")) {
+          window.location.reload();
+        }
+      });
+    }
+  }
+
   title = 'Anthelios League';
 }
