@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration development --output-path --output-hashing=all dist/development",
-    "build-prod": "ng build --configuration production --output-hashing=all --output-path dist/production",
+    "build": "ng build --configuration development --output-path dist/development",
+    "build-prod": "ng build --configuration production --output-path dist/production",
     "watch": "ng build --watch --configuration development",
     "start-pwa": "ng build --configuration production --aot && http-server -p 8080 -c-1 dist/angular-test",
     "test": "ng test"
