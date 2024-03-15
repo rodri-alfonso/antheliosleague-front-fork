@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
 
   checkForUpdate(): void {
     this.intervalSubscription?.unsubscribe();
+    console.log('🚀 ~ this.swUpdate.isEnabled:', this.swUpdate.isEnabled);
     if (!this.swUpdate.isEnabled) {
       return;
     }
