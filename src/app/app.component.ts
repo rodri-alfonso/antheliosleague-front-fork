@@ -150,16 +150,24 @@ export class AppComponent implements OnInit {
       location.reload();
     });
 
-    this.swUpdate.checkForUpdate().then((hasUpdate) => {
-      console.log('🚀 ~ hasUpdate:', hasUpdate);
-      if (
-        confirm(
-          'Hay una nueva versión disponible. ¿Desea actualizar? (chick for updates)'
-        )
-      ) {
-        window.location.reload();
-      }
-    });
+    this.swUpdate
+      .checkForUpdate()
+      .then((hasUpdate) => {
+        console.log('🚀 ~ hasUpdate:', hasUpdate);
+        if (
+          confirm(
+            'Hay una nueva versión disponible. ¿Desea actualizar? (chick for updates)'
+          )
+        ) {
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.error('🚀 ~ error updating the client:', error);
+      })
+      .finally(() => {
+        console.log('🚀 ~ finally ~ finally');
+      });
 
     this.swUpdate.versionUpdates.subscribe((response) => {
       console.log('🚀 ~ response:', response);
