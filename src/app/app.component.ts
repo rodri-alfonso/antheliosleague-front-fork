@@ -6,7 +6,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { SwUpdate } from '@angular/service-worker';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonsComponent } from './components/ui/buttons/buttons.component';
-import { Subscription, interval } from 'rxjs';
+import { Subscription, interval, map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +17,7 @@ import { Subscription, interval } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   isNewVersionAvailable: boolean = false;
-  intervalSource = interval(1 * 60 * 1000); // every 1 mins
-  intervalSubscription: Subscription = new Subscription();
+  counterTimer$: any = null;
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -26,7 +25,7 @@ export class AppComponent implements OnInit {
     private appRef: ApplicationRef,
     private zone: NgZone
   ) {
-    this.checkForUpdate();
+    // this.checkForUpdate();
   }
 
   isModalOpen = false;
@@ -35,83 +34,83 @@ export class AppComponent implements OnInit {
     this.swUpdate.activateUpdate().then(() => window.location.reload());
   }
 
-  onCheckUpdate() {
-    // this.appRef.isStable.subscribe((isStable: boolean) => {
-    //   if (isStable) {
-    //     this.swUpdate.checkForUpdate().then((hasUpdate) => {
-    //       if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
-    //         window.location.reload();
-    //       }
-    //     });
-    //   }
-    // });
-    if (!this.swUpdate.isEnabled) {
-      return;
-    }
+  // onCheckUpdate() {
+  //   // this.appRef.isStable.subscribe((isStable: boolean) => {
+  //   //   if (isStable) {
+  //   //     this.swUpdate.checkForUpdate().then((hasUpdate) => {
+  //   //       if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+  //   //         window.location.reload();
+  //   //       }
+  //   //     });
+  //   //   }
+  //   // });
+  //   if (!this.swUpdate.isEnabled) {
+  //     return;
+  //   }
 
-    this.swUpdate.versionUpdates.subscribe((evt) => {
-      switch (evt.type) {
-        case 'VERSION_DETECTED':
-          console.log(`Downloading new app version: ${evt.version.hash}`);
-          break;
-        case 'VERSION_READY':
-          console.log(`Current app version: ${evt.currentVersion.hash}`);
-          console.log(
-            `New app version ready for use: ${evt.latestVersion.hash}`
-          );
-          if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
-            // window.location.reload();
-            this.swUpdate
-              .activateUpdate()
-              .then(() => document.location.reload())
-              .catch((error) =>
-                console.error('Failed to apply updates:', error)
-              );
-          }
-          break;
-        case 'VERSION_INSTALLATION_FAILED':
-          console.log(
-            `Failed to install app version '${evt.version.hash}': ${evt.error}`
-          );
-          break;
-      }
-    });
-  }
+  //   this.swUpdate.versionUpdates.subscribe((evt) => {
+  //     switch (evt.type) {
+  //       case 'VERSION_DETECTED':
+  //         console.log(`Downloading new app version: ${evt.version.hash}`);
+  //         break;
+  //       case 'VERSION_READY':
+  //         console.log(`Current app version: ${evt.currentVersion.hash}`);
+  //         console.log(
+  //           `New app version ready for use: ${evt.latestVersion.hash}`
+  //         );
+  //         if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+  //           // window.location.reload();
+  //           this.swUpdate
+  //             .activateUpdate()
+  //             .then(() => document.location.reload())
+  //             .catch((error) =>
+  //               console.error('Failed to apply updates:', error)
+  //             );
+  //         }
+  //         break;
+  //       case 'VERSION_INSTALLATION_FAILED':
+  //         console.log(
+  //           `Failed to install app version '${evt.version.hash}': ${evt.error}`
+  //         );
+  //         break;
+  //     }
+  //   });
+  // }
 
-  checkForUpdate(): void {
-    this.intervalSubscription?.unsubscribe();
-    console.log('🚀 ~ this.swUpdate.isEnabled:', this.swUpdate.isEnabled);
-    if (!this.swUpdate.isEnabled) {
-      return;
-    }
+  // checkForUpdate(): void {
+  //   this.intervalSubscription?.unsubscribe();
+  //   console.log('🚀 ~ this.swUpdate.isEnabled:', this.swUpdate.isEnabled);
+  //   if (!this.swUpdate.isEnabled) {
+  //     return;
+  //   }
 
-    this.zone.runOutsideAngular(() => {
-      this.intervalSubscription = this.intervalSource.subscribe(async () => {
-        try {
-          this.isNewVersionAvailable = await this.swUpdate.checkForUpdate();
-          console.log('Checking for updates...');
-          console.log(
-            this.isNewVersionAvailable ? 'New version available' : 'Nothing'
-          );
-          if (this.isNewVersionAvailable) {
-            if (
-              confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
-            ) {
-              this.applyUpdate();
-            }
-          }
+  //   this.zone.runOutsideAngular(() => {
+  //     this.intervalSubscription = this.intervalSource.subscribe(async () => {
+  //       try {
+  //         this.isNewVersionAvailable = await this.swUpdate.checkForUpdate();
+  //         console.log('Checking for updates...');
+  //         console.log(
+  //           this.isNewVersionAvailable ? 'New version available' : 'Nothing'
+  //         );
+  //         if (this.isNewVersionAvailable) {
+  //           if (
+  //             confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
+  //           ) {
+  //             this.applyUpdate();
+  //           }
+  //         }
 
-          console.log(
-            this.isNewVersionAvailable
-              ? 'A new version is available.'
-              : 'Already on the latest version.'
-          );
-        } catch (error) {
-          console.error('Failed to check for updates:', error);
-        }
-      });
-    });
-  }
+  //         console.log(
+  //           this.isNewVersionAvailable
+  //             ? 'A new version is available.'
+  //             : 'Already on the latest version.'
+  //         );
+  //       } catch (error) {
+  //         console.error('Failed to check for updates:', error);
+  //       }
+  //     });
+  //   });
+  // }
 
   applyUpdate(): void {
     // Reload the page to update to the latest version after the new version is activated
@@ -122,13 +121,40 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.subscribe(() => {
-        if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
-          window.location.reload();
-        }
-      });
-    }
+    // if (this.swUpdate.isEnabled) {
+    //   this.swUpdate.versionUpdates.subscribe(() => {
+    //     if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+    //       window.location.reload();
+    //     }
+    //   });
+    // }
+
+    this.counterTimer$ = this.start().subscribe((_) => {
+      this.counterTimer$.unsubscribe();
+    });
+  }
+
+  ngOnDestroy() {
+    this.counterTimer$.unsubscribe();
+  }
+
+  onCheckForUpdates() {
+    console.log('checking for updates...');
+    this.swUpdate.versionUpdates.subscribe((response) => {
+      console.log('🚀 ~ response:', response);
+      if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+        window.location.reload();
+      }
+    });
+  }
+
+  start() {
+    return interval(60000).pipe(
+      map((x: number) => {
+        this.onCheckForUpdates();
+        return x;
+      })
+    );
   }
 
   title = 'Anthelios League';
