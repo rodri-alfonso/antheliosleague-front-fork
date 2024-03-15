@@ -30,17 +30,44 @@ export class AppComponent implements OnInit {
   }
 
   onCheckUpdate() {
-    this.appRef.isStable.subscribe((isStable: boolean) => {
-      if (isStable) {
-        this.swUpdate.checkForUpdate().then((hasUpdate) => {
-          if (hasUpdate) {
-            if (
-              confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
-            ) {
-              window.location.reload();
-            }
+    // this.appRef.isStable.subscribe((isStable: boolean) => {
+    //   if (isStable) {
+    //     this.swUpdate.checkForUpdate().then((hasUpdate) => {
+    //       if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+    //         window.location.reload();
+    //       }
+    //     });
+    //   }
+    // });
+    if (!this.swUpdate.isEnabled) {
+      return;
+    }
+
+    this.swUpdate.versionUpdates.subscribe((evt) => {
+      switch (evt.type) {
+        case 'VERSION_DETECTED':
+          console.log(`Downloading new app version: ${evt.version.hash}`);
+          break;
+        case 'VERSION_READY':
+          console.log(`Current app version: ${evt.currentVersion.hash}`);
+          console.log(
+            `New app version ready for use: ${evt.latestVersion.hash}`
+          );
+          if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+            // window.location.reload();
+            this.swUpdate
+              .activateUpdate()
+              .then(() => document.location.reload())
+              .catch((error) =>
+                console.error('Failed to apply updates:', error)
+              );
           }
-        });
+          break;
+        case 'VERSION_INSTALLATION_FAILED':
+          console.log(
+            `Failed to install app version '${evt.version.hash}': ${evt.error}`
+          );
+          break;
       }
     });
   }
