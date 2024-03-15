@@ -7,6 +7,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonsComponent } from './components/ui/buttons/buttons.component';
 import { Subscription, interval, map } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
     private primengConfig: PrimeNGConfig,
     private swUpdate: SwUpdate,
     private appRef: ApplicationRef,
-    private zone: NgZone
+    private zone: NgZone,
+    private changeDetector: ChangeDetectorRef
   ) {
     // this.checkForUpdate();
   }
@@ -130,7 +132,8 @@ export class AppComponent implements OnInit {
     // }
 
     this.counterTimer$ = this.start().subscribe((_) => {
-      this.counterTimer$.unsubscribe();
+      // this.counterTimer$.unsubscribe();
+      console.log('Another round');
     });
   }
 
