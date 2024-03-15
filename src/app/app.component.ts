@@ -30,11 +30,17 @@ export class AppComponent implements OnInit {
   }
 
   onCheckUpdate() {
-    this.appRef.isStable.subscribe((isStable) => {
+    this.appRef.isStable.subscribe((isStable: boolean) => {
       if (isStable) {
-        this.swUpdate
-          .checkForUpdate()
-          .then((hasUpdate) => (this.isModalOpen = hasUpdate));
+        this.swUpdate.checkForUpdate().then((hasUpdate) => {
+          if (hasUpdate) {
+            if (
+              confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
+            ) {
+              window.location.reload();
+            }
+          }
+        });
       }
     });
   }
@@ -42,7 +48,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.subscribe(() => {
-        if (confirm("Hay una nueva versión disponible. ¿Desea actualizar?")) {
+        if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
           window.location.reload();
         }
       });
