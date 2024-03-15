@@ -143,6 +143,18 @@ export class AppComponent implements OnInit {
 
   onCheckForUpdates() {
     console.log('checking for updates...');
+
+    this.swUpdate.checkForUpdate().then((hasUpdate) => {
+      console.log('🚀 ~ hasUpdate:', hasUpdate);
+      if (
+        confirm(
+          'Hay una nueva versión disponible. ¿Desea actualizar? (chick for updates)'
+        )
+      ) {
+        window.location.reload();
+      }
+    });
+
     this.swUpdate.versionUpdates.subscribe((response) => {
       console.log('🚀 ~ response:', response);
       if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
