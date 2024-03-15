@@ -143,6 +143,12 @@ export class AppComponent implements OnInit {
 
   onCheckForUpdates() {
     console.log('checking for updates...');
+    console.log('🚀 ~ this.swUpdate.isEnabled:', this.swUpdate.isEnabled);
+
+    this.swUpdate.activateUpdate().then((response) => {
+      console.log('🚀 ~ response from activated update:', response);
+      location.reload();
+    });
 
     this.swUpdate.checkForUpdate().then((hasUpdate) => {
       console.log('🚀 ~ hasUpdate:', hasUpdate);
@@ -159,6 +165,32 @@ export class AppComponent implements OnInit {
       console.log('🚀 ~ response:', response);
       if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
         window.location.reload();
+      }
+    });
+  }
+
+  updateClient() {
+    if (!this.swUpdate.isEnabled) {
+      console.log('Not Enabled');
+      return;
+    }
+    // this.swUpdate.available.subscribe((event) => {
+    //   console.log(`current`, event.current, `available `, event.available);
+    //   if (confirm('update available for the app please conform')) {
+    //     this.swUpdate.activateUpdate().then(() => location.reload());
+    //   }
+    // });
+  }
+
+  checkUpdate() {
+    this.appRef.isStable.subscribe((isStable) => {
+      if (isStable) {
+        const timeInterval = interval(8 * 60 * 60 * 1000);
+
+        timeInterval.subscribe(() => {
+          this.swUpdate.checkForUpdate().then(() => console.log('checked'));
+          console.log('update checked');
+        });
       }
     });
   }
