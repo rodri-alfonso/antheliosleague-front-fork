@@ -134,6 +134,24 @@ export class AppComponent implements OnInit {
     this.counterTimer$ = this.start().subscribe((_) => {
       // this.counterTimer$.unsubscribe();
       console.log('Another round');
+      this.swUpdate
+        .checkForUpdate()
+        .then((hasUpdate) => {
+          console.log('🚀 ~ hasUpdate:', hasUpdate);
+          if (
+            confirm(
+              'Hay una nueva versión disponible. ¿Desea actualizar? (chick for updates)'
+            )
+          ) {
+            window.location.reload();
+          }
+        })
+        .catch((error) => {
+          console.error('🚀 ~ error updating the client:', error);
+        })
+        .finally(() => {
+          console.log('🚀 ~ finally ~ finally');
+        });
     });
   }
 
@@ -143,11 +161,12 @@ export class AppComponent implements OnInit {
 
   onCheckForUpdates() {
     console.log('checking for updates...');
-    console.log('🚀 ~ this.swUpdate.isEnabled:', this.swUpdate.isEnabled);
 
     this.swUpdate.activateUpdate().then((response) => {
       console.log('🚀 ~ response from activated update:', response);
-      location.reload();
+      if (confirm('Hay una nueva versión disponible. ¿Desea actualizar?')) {
+        window.location.reload();
+      }
     });
 
     this.swUpdate
