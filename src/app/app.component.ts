@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     private appRef: ApplicationRef,
     private zone: NgZone
   ) {
-    this.onCheckUpdate();
+    this.checkForUpdate();
   }
 
   isModalOpen = false;
@@ -88,7 +88,10 @@ export class AppComponent implements OnInit {
       this.intervalSubscription = this.intervalSource.subscribe(async () => {
         try {
           this.isNewVersionAvailable = await this.swUpdate.checkForUpdate();
-
+          console.log('Checking for updates...');
+          console.log(
+            this.isNewVersionAvailable ? 'New version available' : 'Nothing'
+          );
           if (this.isNewVersionAvailable) {
             if (
               confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
