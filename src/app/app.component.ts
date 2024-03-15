@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
@@ -6,6 +6,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { SwUpdate } from '@angular/service-worker';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonsComponent } from './components/ui/buttons/buttons.component';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,15 @@ import { ButtonsComponent } from './components/ui/buttons/buttons.component';
   imports: [CommonModule, RouterOutlet, DialogModule, ButtonsComponent],
 })
 export class AppComponent implements OnInit {
+  isNewVersionAvailable: boolean = false;
+  intervalSource = interval(1 * 60 * 1000); // every 1 mins
+  intervalSubscription: Subscription = new Subscription();
+
   constructor(
     private primengConfig: PrimeNGConfig,
     private swUpdate: SwUpdate,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private zone: NgZone
   ) {
     this.onCheckUpdate();
   }
@@ -70,6 +76,45 @@ export class AppComponent implements OnInit {
           break;
       }
     });
+  }
+
+  checkForUpdate(): void {
+    this.intervalSubscription?.unsubscribe();
+    if (!this.swUpdate.isEnabled) {
+      return;
+    }
+
+    this.zone.runOutsideAngular(() => {
+      this.intervalSubscription = this.intervalSource.subscribe(async () => {
+        try {
+          this.isNewVersionAvailable = await this.swUpdate.checkForUpdate();
+
+          if (this.isNewVersionAvailable) {
+            if (
+              confirm('Hay una nueva versión disponible. ¿Desea actualizar?')
+            ) {
+              this.applyUpdate();
+            }
+          }
+
+          console.log(
+            this.isNewVersionAvailable
+              ? 'A new version is available.'
+              : 'Already on the latest version.'
+          );
+        } catch (error) {
+          console.error('Failed to check for updates:', error);
+        }
+      });
+    });
+  }
+
+  applyUpdate(): void {
+    // Reload the page to update to the latest version after the new version is activated
+    this.swUpdate
+      .activateUpdate()
+      .then(() => document.location.reload())
+      .catch((error) => console.error('Failed to apply updates:', error));
   }
 
   ngOnInit() {
