@@ -19,7 +19,7 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage();
 
-const CACHE_NAME = "anthelios-league-v1.2.3";
+const CACHE_NAME = "anthelios-league-v1.2.4";
 
 const cacheUrls = ["/", "/src/assets/"];
 
