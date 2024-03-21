@@ -19,12 +19,12 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage();
 
-const CACHE_NAME = "anthelios-league-v1.2.4";
+const CACHE_NAME = "anthelios-league-v1.2.5";
 
 const cacheUrls = ["/", "/src/assets/"];
 
 self.addEventListener("install", (ev) => {
-  console.log(ev);
+  console.log("installling... ", ev);
 
   caches
     .open(CACHE_NAME)
@@ -37,7 +37,7 @@ self.addEventListener("install", (ev) => {
 });
 
 self.addEventListener("activate", (ev) => {
-  console.log(ev);
+  console.log("activating... ", ev);
 
   // Limpiar caches antiguos
   const limpiarCachePr = caches.keys().then((names) => {
